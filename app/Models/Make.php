@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Make extends Model
 {
     protected $fillable = [
+        'image',
         'name',
     ];
 
