@@ -27,7 +27,8 @@ return new class extends Migration
                 ->nullOnDelete();
             $table->text('description')
                 ->nullable();
-            $table->string('email', 100)
+            $table->string('email', 150)
+                ->unique()
                 ->nullable();
             $table->foreignId('currency_id')
                 ->nullable()
