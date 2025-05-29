@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\CustomerAccountController;
+use App\Http\Controllers\MakeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StockController;
 use App\Models\CustomerAccount;
@@ -17,6 +20,9 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('customer-account', CustomerAccountController::class);
     Route::resource('stock', StockController::class);
+    Route::resource('make', MakeController::class);
+    Route::resource('category', CategoryController::class);
+    Route::resource('currency', CurrencyController::class);
 });
 
 require __DIR__ . '/auth.php';
