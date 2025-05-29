@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="w-64 min-h-screen bg-blue-900 text-white text-xs">
+<nav x-data="{ open: false }" class="w-64 h-screen bg-blue-900 text-white text-xs overflow-y-auto">
     <!-- Logo -->
     <div class="h-16 flex items-center px-4 border-b-2 border-white">
         <a href="{{ route('dashboard') }}" class="flex items-center">
@@ -105,7 +105,7 @@
                 class="text-xs font-semibold text-[#706f6c] uppercase tracking-wider mb-2 bg-blue-900 p-2 text-white rounded-sm">
                 Settings
             </p>
-            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="block py-2">
+            <x-nav-link :href="route('make.index')" :active="request()->routeIs('make.*')" class="block py-2">
                 {{ __('Makes') }}
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 inline-block mr-2">
@@ -114,7 +114,7 @@
                     <path d="M6 12h16" />
                 </svg>
             </x-nav-link>
-            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="block py-2">
+            <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.*')" class="block py-2">
                 {{ __('Categories') }}
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -124,7 +124,7 @@
                     <path d="M6 12h16" />
                 </svg>
             </x-nav-link>
-            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="block py-2">
+            <x-nav-link :href="route('currency.index')" :active="request()->routeIs('currency.*')" class="block py-2">
                 {{ __('Currencies') }}
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
