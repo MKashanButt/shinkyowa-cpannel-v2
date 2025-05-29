@@ -14,6 +14,8 @@
         </a>
     @endisset
     @isset($category)
-        <p class="bg-blue-900 border-2 border-white rounded-r-3xl px-4 py-1 ml-[-10px] z-20">Test</p>
+        <p class="bg-blue-900 border-2 border-white rounded-r-3xl px-4 py-2 ml-[-11px] z-20">
+            {{ $category }}
+        </p>
     @endisset
 </div>
