@@ -8,7 +8,7 @@
                 <input type="search" name="searchByEmail" id="searchByEmail"
                     value="{{ Request::get('searchByEmail') ? Request::get('searchByEmail') : '' }}"
                     class="border-0 w-[85%] text-sm" placeholder="Email.....">
-                <button class="p-2 flex items-center justify-between w-[15%]">
+                <button class="p-2 flex items-center justify-between w-[20%]">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                         <path d="M256 80a176 176 0 10176 176A176 176 0 00256 80z" fill="none" stroke="currentColor"
                             stroke-miterlimit="10" stroke-width="32" />
@@ -25,7 +25,7 @@
                 <input type="search" name="searchByCompany" id="searchByCompany" placeholder="Company....."
                     value="{{ Request::get('searchByCompany') ? Request::get('searchByCompany') : '' }}"
                     class="border-0 w-[85%] text-sm">
-                <button class="p-2 flex items-center justify-between w-[15%]">
+                <button class="p-2 flex items-center justify-between w-[20%]">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 512 512">
                         <path d="M256 80a176 176 0 10176 176A176 176 0 00256 80z" fill="none" stroke="currentColor"
                             stroke-miterlimit="10" stroke-width="32" />
@@ -41,7 +41,7 @@
                 @csrf
                 <input type="search" name="search" id="search" placeholder="Stock Id or Chassis..."
                     value="{{ Request::get('search') ? Request::get('search') : '' }}" class="border-0 w-[85%] text-sm">
-                <button class="p-2 flex items-center justify-between w-[15%]">
+                <button class="p-2 flex items-center justify-between w-[20%]">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                         <path d="M256 80a176 176 0 10176 176A176 176 0 00256 80z" fill="none" stroke="currentColor"
                             stroke-miterlimit="10" stroke-width="32" />
