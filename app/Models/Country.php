@@ -16,6 +16,11 @@ class Country extends Model
         return $this->hasMany(Stock::class);
     }
 
+    public function inquiry(): HasMany
+    {
+        return $this->hasMany(Inquiry::class);
+    }
+
     public function customerAccount(): HasMany
     {
         return $this->hasMany(CustomerAccount::class);
