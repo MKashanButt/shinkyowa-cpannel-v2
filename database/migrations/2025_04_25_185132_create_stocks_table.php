@@ -50,7 +50,7 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('categories')
                 ->onDelete('set null');
-            $table->foreignId('countries_id')
+            $table->foreignId('country_id')
                 ->nullable()
                 ->constrained('countries')
                 ->onDelete('set null');
