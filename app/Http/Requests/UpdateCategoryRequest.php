@@ -28,8 +28,7 @@ class UpdateCategoryRequest extends FormRequest
                 'required',
                 'string',
                 'max:100',
-                Rule::unique('makes')
-                    ->ignore($this->make)
+                'unique:categories,name' . $this->country->id
             ],
         ];
     }
@@ -38,6 +37,7 @@ class UpdateCategoryRequest extends FormRequest
     {
         return [
             'name.required' => 'name is required',
+            'name.unique' => 'name is already present'
         ];
     }
 }
