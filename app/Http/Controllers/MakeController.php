@@ -32,7 +32,6 @@ class MakeController extends Controller
             $validated['image'] = $path;
         }
 
-
         Make::create($validated);
 
         return redirect()->route('make.index')
