@@ -22,7 +22,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('customer-account', CustomerAccountController::class);
+
     Route::resource('stock', StockController::class);
+
     Route::resource('make', MakeController::class);
     Route::resource('category', CategoryController::class);
     Route::resource('currency', CurrencyController::class);
