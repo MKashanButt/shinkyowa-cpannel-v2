@@ -37,7 +37,7 @@
                 class="text-xs font-semibold text-[#706f6c] uppercase tracking-wider mb-2 bg-blue-900 p-2 text-white rounded-sm">
                 Vehicles
             </p>
-            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="block py-2">
+            <x-nav-link :href="route('stock.index')" :active="request()->routeIs('stock.*')" class="block py-2">
                 {{ __('Stock') }}
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-5 h-5 inline-block mr-2">
