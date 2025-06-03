@@ -1,8 +1,8 @@
 <x-app-layout>
     <section>
-        <x-breadcrumbs :page="'Vehicles'" :subpage="'Stock'" :category="'Add'" />
+        <x-breadcrumbs :page="'Vehicles'" :subpage="'Stock'" :category="'Edit'" />
         <x-header>
-            {{ __('Add Stock') }}
+            {{ __('Edit Stock') }}
             <a href="{{ route('stock.index') }}">
                 <x-primary-button>Go Back</x-primary-button>
             </a>
@@ -234,7 +234,7 @@
                     </div>
                 </div>
             </div>
-            <x-success-button class="justify-self-end w-[10%] flex justify-center">Add</x-success-button>
+            <x-success-button class="justify-self-end w-[10%] flex justify-center">Edit</x-success-button>
         </form>
     </section>
     @push('scripts')

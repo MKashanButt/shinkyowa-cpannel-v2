@@ -1,6 +1,6 @@
 <x-app-layout>
     <section>
-        <x-breadcrumbs :page="'Vehicles'" :subpage="'Stock Details'" />
+        <x-breadcrumbs :page="'Vehicles'" :subpage="'Stock'" :category="'Details'" />
         <x-header>
             {{ __('Vehicle Stock Details') }}
             <a href="{{ route('stock.index') }}">
