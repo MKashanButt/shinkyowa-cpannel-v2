@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Stock extends Model
@@ -75,8 +76,8 @@ class Stock extends Model
         return $this->hasMany(Document::class);
     }
 
-    public function shipment(): HasMany
+    public function shipment(): BelongsToMany
     {
-        return $this->hasMany(Shipment::class);
+        return $this->belongsToMany(Shipment::class);
     }
 }
