@@ -7,6 +7,7 @@ use App\Http\Controllers\CustomerAccountController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\MakeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\StockController;
 use App\Models\CustomerAccount;
 use App\Models\Inquiry;
@@ -24,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('customer-account', CustomerAccountController::class);
 
     Route::resource('stock', StockController::class);
+    Route::resource('shipment', ShipmentController::class);
 
     Route::resource('make', MakeController::class);
     Route::resource('category', CategoryController::class);
