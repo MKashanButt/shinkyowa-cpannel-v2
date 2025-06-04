@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('shipments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('stock_id')
-                ->constrained('stocks')
-                ->cascadeOnDelete();
+            $table->string('vessel_name');
             $table->date('eta')->format('Y-m-d');
             $table->date('etd')->format('Y-m-d');
             $table->timestamps();
