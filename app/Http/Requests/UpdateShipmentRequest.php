@@ -44,9 +44,9 @@ class UpdateShipmentRequest extends FormRequest
             'vessel_name.required' => 'The vessel name field is required.',
             'eta.required' => 'The estimated time of arrival field is required.',
             'eta.date' => 'The ETA must be a valid date.',
+            'eta.after_or_equal' => 'The ETA must be equal to or after the ETA.',
             'etd.required' => 'The estimated time of departure field is required.',
             'etd.date' => 'The ETD must be a valid date.',
-            'etd.after_or_equal' => 'The ETD must be equal to or after the ETA.',
             'stock_id.required' => 'At least one stock item must be selected.',
             'stock_id.*.exists' => 'One or more selected stock items are invalid.',
         ];
