@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Shipment extends Model
 {
@@ -14,8 +15,8 @@ class Shipment extends Model
         'etd',
     ];
 
-    public function stock(): BelongsTo
+    public function stock(): BelongsToMany
     {
-        return $this->belongsTo(Stock::class);
+        return $this->belongsToMany(Stock::class);
     }
 }
