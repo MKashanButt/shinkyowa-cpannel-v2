@@ -80,4 +80,9 @@ class Stock extends Model
     {
         return $this->belongsToMany(Shipment::class);
     }
+
+    public function getDepositAttribute()
+    {
+        return $this->payment->sum('amount');
+    }
 }
