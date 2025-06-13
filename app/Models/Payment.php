@@ -12,9 +12,11 @@ class Payment extends Model
         'description',
         'payment_date',
         'in_yen',
-        'in_usd',
+        'amount',
         'payment_recieved_date',
         'customer_account_id',
+        'file',
+        'status',
     ];
 
     public function stock(): BelongsTo
