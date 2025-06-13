@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('whatsapp', 15);
             $table->string('address');
             $table->string('city');
-            $table->foreignId('country')
+            $table->foreignId('country_id')
                 ->nullable()
                 ->constrained('countries')
                 ->nullOnDelete();
