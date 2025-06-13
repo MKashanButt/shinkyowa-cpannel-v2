@@ -4,9 +4,9 @@
 
 <x-app-layout>
     <section>
-        <x-breadcrumbs :page="'Sale'" :subpage="'Customer Accounts'" />
+        <x-breadcrumbs :page="'Customer Accounts'" />
         <x-customer-options />
-        <div class="w-full h-[390px] overflow-y-scroll">
+        <div class="w-full h-[350px] overflow-y-scroll">
             <table class="min-w-full divide-y divide-[#e3e3e0]">
                 <thead class="bg-gray-200 select-none">
                     <tr>
@@ -33,29 +33,34 @@
                 <tbody class="bg-white divide-y divide-[#e3e3e0]">
                     @foreach ($accounts as $key => $data)
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                            <td class="px-6 py-4 whitespace-nowrap text-xs">
                                 {{ str_pad($sno + $key + 1, 2, '0', STR_PAD_LEFT) }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $data['customer']->customer_name }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm">{{ $data['customer']->customer_company }}
+                            <td class="px-6 py-4 whitespace-nowrap text-xs">{{ $data['name'] }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-xs">{{ $data['company'] }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-xs text-green-700">
+                                {{ '+' . number_format($data['buying']) }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-xs text-green-700">
+                                {{ '+' . number_format($data['deposit']) }}</td>
+                            <td
+                                class="px-6 py-4 whitespace-nowrap text-xs {{ $data['buying'] - $data['deposit'] < 0 ? 'text-red-700' : 'text-green-700' }}">
+                                {{ number_format($data['buying'] - $data['deposit']) }}
                             </td>
-                            {{-- <td>{{ $buying ? $stat['customer']->currency . number_format($stat['buying']) : '' }}</td>
-                            <td>{{ $deposit ? $stat['customer']->currency . number_format($stat['deposit']) : '' }}</td>
-                            <td>{{ $buying ? $stat['customer']->currency . number_format($stat['buying'] - $stat['deposit']) : '' }} --}}
-                            </td>
-                            @if (Auth::user()->user != 'agent')
+                            @if (Auth::user()->role != 'agent')
                                 <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                    <a href="/agent-customers-account/{{ $data['customer']->agent }}">
-                                        <button class="agent-btn">{{ $data['customer']->agent }}</button>
-                                    </a>
+                                    {{-- <a href="{{ route('agent-customers', $data['agent']->id) }}"> --}}
+                                    <x-primary-button class="agent-btn">
+                                        {{ $data['agent']->name }}
+                                    </x-primary-button>
+                                    {{-- </a> --}}
                                 </td>
                             @endif
                             <td class="px-6 py-4 whitespace-nowrap text-sm">
                                 <div class="stage">
-                                    <a href="/customer-account/{{ $stat['customer']->customer_id }}">
-                                        <button class="account-btn">View Account</button>
+                                    <a href="{{ route('customer-account.show', $data) }}">
+                                        <x-secondary-button>View Account</x-secondary-button>
                                     </a>
-                                    @if (Auth::user()->role != 'agent')
-                                        <a href="/customer-account/destroy/{{ $stat['customer']->customer_id }}">
+                                    {{-- @if (Auth::user()->role != 'agent')
+                                        <a href="/customer-account/destroy/{{ $data['customer']->customer_id }}">
                                             <button class="danger"
                                                 onclick="confirm('Are you sure you want to delete {{ ucwords($stat['customer']->customer_name) }} Account?')">
                                                 Delete
@@ -64,7 +69,7 @@
                                         <a href="/customer-account/edit/{{ $stat['customer']->customer_id }}">
                                             <button class="primary">Edit</button>
                                         </a>
-                                    @endif
+                                    @endif --}}
                                 </div>
                             </td>
                         </tr>
