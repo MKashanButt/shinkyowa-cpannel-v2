@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class StoreCustomerAccountRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class StoreCustomerAccountRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Auth::check() && !Auth::user()->hasRole('customer');
     }
 
     /**
@@ -22,7 +23,6 @@ class StoreCustomerAccountRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'cid'         => ['required', 'string'],
             'name'        => ['required', 'string', 'max:100'],
             'company'     => ['required', 'string', 'max:200'],
             'email'       => ['required', 'email', 'max:150'],
@@ -32,9 +32,9 @@ class StoreCustomerAccountRequest extends FormRequest
             'description' => ['nullable', 'string', 'max:244'],
             'address'     => ['required', 'string', 'max:244'],
             'city'        => ['required', 'string', 'max:244'],
-            'country'     => ['required', 'string'],
+            'country_id'     => ['required', 'string'],
             'currency_id' => ['required', 'string'],
-            'agent_id'    => ['required', 'string'],
+            'agent_id'    => ['nullable', 'string'],
         ];
     }
 
@@ -78,8 +78,6 @@ class StoreCustomerAccountRequest extends FormRequest
 
             'country.required'     => 'Country is required.',
             'currency_id.required' => 'Currency selection is required.',
-
-            'agent_id.required'    => 'Agent ID is required.',
         ];
     }
 
@@ -91,7 +89,6 @@ class StoreCustomerAccountRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'cid'         => 'customer ID',
             'name'        => 'name',
             'company'     => 'company',
             'email'       => 'email',
@@ -103,7 +100,6 @@ class StoreCustomerAccountRequest extends FormRequest
             'city'        => 'city',
             'country'     => 'country',
             'currency_id' => 'currency',
-            'agent_id'    => 'agent ID',
         ];
     }
 }
