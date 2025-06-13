@@ -16,11 +16,16 @@ return new class extends Migration
             $table->foreignId('stock_id')
                 ->constrained('stocks')
                 ->cascadeOnDelete();
-            $table->string('japanese_export', 100);
-            $table->string('english_export', 100);
-            $table->string('final_invoice', 100);
-            $table->string('inspection_certificate', 100);
-            $table->string('bl_copy', 100);
+            $table->string('japanese_export', 100)
+                ->nullable();
+            $table->string('english_export', 100)
+                ->nullable();
+            $table->string('final_invoice', 100)
+                ->nullable();
+            $table->string('inspection_certificate', 100)
+                ->nullable();
+            $table->string('bl_copy', 100)
+                ->nullable();
             $table->timestamps();
         });
     }
