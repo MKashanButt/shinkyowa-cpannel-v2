@@ -4,8 +4,11 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CurrencyController;
 use App\Http\Controllers\CustomerAccountController;
+use App\Http\Controllers\ReservedVehicleController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\MakeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\StockController;
@@ -23,9 +26,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('customer-account', CustomerAccountController::class);
+    Route::resource('reserved-vehicle', ReservedVehicleController::class);
 
     Route::resource('stock', StockController::class);
     Route::resource('shipment', ShipmentController::class);
+    Route::resource('document', DocumentController::class);
+    Route::resource('payment', PaymentController::class);
 
     Route::resource('make', MakeController::class);
     Route::resource('category', CategoryController::class);
