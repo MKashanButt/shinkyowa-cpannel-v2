@@ -62,13 +62,11 @@
                 Add Account
             </a>
             @if (Auth::user()->hasRole('admin'))
-                <a href="/add-customer-payment/{{ isset($customeremail) ? $customeremail : '' }}"
-                    class="w-1/3 rounded-md bg-white py-3">
+                <a href="{{ route('payment.create') }}" class="w-1/3 rounded-md bg-white py-3">
                     Add Payment
                 </a>
             @endif
-            <a href="/add-customer-vehicle/{{ isset($customeremail) ? $customeremail : '' }}"
-                class="w-1/3 rounded-md bg-white py-3">
+            <a href="{{ route('reserved-vehicle.create') }}" class="w-1/3 rounded-md bg-white py-3">
                 Add Vehicle
             </a>
         </div>
