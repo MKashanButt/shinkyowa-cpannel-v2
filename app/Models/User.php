@@ -70,6 +70,11 @@ class User extends Authenticatable
         return $this->hasMany(Stock::class);
     }
 
+    public function payment(): HasMany
+    {
+        return $this->hasMany(Payment::class);
+    }
+
     public function hasRole(string $role): bool
     {
         return $this->role->name === $role;
