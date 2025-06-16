@@ -43,7 +43,7 @@
                             <td class="px-6 py-4 whitespace-nowrap text-xs">{{ $data['in_yen'] }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">{{ $data['payment_recieved_date'] }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">{{ $data['customerAccount']->name }}</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-xs">{{ 'name' }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-xs">{{ $data['user']->name }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">
                                 <div class="flex gap-4">
                                     <a href="{{ route('payment.edit', $data) }}">
