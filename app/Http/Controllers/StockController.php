@@ -166,6 +166,23 @@ class StockController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search', '');
+
+        $stocks = Stock::with(['make', 'currency', 'customerAccount', 'agent'])
+            ->where('sid', 'LIKE', "%{$search}%")
+            ->orWhere('name', 'LIKE', "%{$search}%")
+            ->orWhereHas('make', function ($query) use ($search) {
+                $query->where('name', 'LIKE', "%{$search}%");
+            })
+            ->orWhere('model', 'LIKE', "%{$search}%")
+            ->paginate(8);
+
+        return view('stock.index', compact('stocks'));
+    }
+
     public function destroy($id)
     {
         $stock = Stock::find($id);
