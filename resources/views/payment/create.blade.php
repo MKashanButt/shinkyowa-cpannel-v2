@@ -54,13 +54,16 @@
                             value="{{ old('in_yen') }}" />
                         <x-input-error :messages="$errors->get('in_yen')" class="mt-2" />
                     </div>
-                    <div class="flex items-center gap-2">
-                        <x-input-label for="payment_recieved_date"
-                            class="w-[32%] after:content-['*'] after:text-red-500">Payment Recieved Date</x-input-label>
-                        <x-text-input type="date" id="payment_recieved_date" name="payment_recieved_date"
-                            class="w-4/5" value="{{ old('payment_recieved_date') }}" />
-                        <x-input-error :messages="$errors->get('payment_recieved_date')" class="mt-2" />
-                    </div>
+                    @if (Auth::user()->hasRole('admin'))
+                        <div class="flex items-center gap-2">
+                            <x-input-label for="payment_recieved_date"
+                                class="w-[32%] after:content-['*'] after:text-red-500">Payment Recieved
+                                Date</x-input-label>
+                            <x-text-input type="date" id="payment_recieved_date" name="payment_recieved_date"
+                                class="w-4/5" value="{{ old('payment_recieved_date') }}" />
+                            <x-input-error :messages="$errors->get('payment_recieved_date')" class="mt-2" />
+                        </div>
+                    @endif
                     <div class="flex items-center gap-2">
                         <x-input-label for="customer_account_id"
                             class="w-[32%] after:content-['*'] after:text-red-500">Customer Account</x-input-label>
