@@ -17,6 +17,7 @@ class Payment extends Model
         'customer_account_id',
         'file',
         'status',
+        'user_id',
     ];
 
     public function stock(): BelongsTo
@@ -27,5 +28,10 @@ class Payment extends Model
     public function customerAccount(): BelongsTo
     {
         return $this->belongsTo(CustomerAccount::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
