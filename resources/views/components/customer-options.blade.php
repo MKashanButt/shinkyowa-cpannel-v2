@@ -2,53 +2,43 @@
     <div class="search flex flex-col gap-3 w-[55%] border-r-2 border-white pr-2">
         <h3 class="text-white text-xl font-bold uppercase">Search</h3>
         <div class="w-full flex items-center gap-2">
-            <form action="/search/email" method="POST"
-                class="flex items-center rounded-md bg-white overflow-hidden w-1/3">
+            <form action="{{ route('customer-account.searchByEmail') }}" method="post"
+                class="w-1/2 flex items-center gap-2 rounded-md bg-white">
                 @csrf
-                <input type="search" name="searchByEmail" id="searchByEmail"
-                    value="{{ Request::get('searchByEmail') ? Request::get('searchByEmail') : '' }}"
-                    class="border-0 w-[85%] text-sm" placeholder="Email.....">
-                <button class="p-2 flex items-center justify-between w-[20%]">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                        <path d="M256 80a176 176 0 10176 176A176 176 0 00256 80z" fill="none" stroke="currentColor"
-                            stroke-miterlimit="10" stroke-width="32" />
-                        <path d="M232 160a72 72 0 1072 72 72 72 0 00-72-72z" fill="none" stroke="currentColor"
-                            stroke-miterlimit="10" stroke-width="32" />
-                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10"
-                            stroke-width="32" d="M283.64 283.64L336 336" />
+                <input type="search" name="email" id="email" placeholder="Email.."
+                    class="w-4/5 rounded-md text-xs uppercase border border-transparent focus:border-blue-900 focus:ring-blue-900"
+                    placeholder="Search" />
+                <button
+                    class="inline-flex items-center px-2 py-1 bg-white font-semibold text-xs text-gray-700 uppercase tracking-widest hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-scan-search-icon lucide-scan-search">
+                        <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+                        <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+                        <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+                        <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+                        <circle cx="12" cy="12" r="3" />
+                        <path d="m16 16-1.9-1.9" />
                     </svg>
                 </button>
             </form>
-            <form action="/search/company" method="POST"
-                class="flex items-center rounded-md bg-white overflow-hidden w-1/3">
+            <form action="{{ route('customer-account.searchByCompany') }}" method="post"
+                class="w-1/2 flex items-center gap-2 rounded-md bg-white">
                 @csrf
-                <input type="search" name="searchByCompany" id="searchByCompany" placeholder="Company....."
-                    value="{{ Request::get('searchByCompany') ? Request::get('searchByCompany') : '' }}"
-                    class="border-0 w-[85%] text-sm">
-                <button class="p-2 flex items-center justify-between w-[20%]">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 512 512">
-                        <path d="M256 80a176 176 0 10176 176A176 176 0 00256 80z" fill="none" stroke="currentColor"
-                            stroke-miterlimit="10" stroke-width="32" />
-                        <path d="M232 160a72 72 0 1072 72 72 72 0 00-72-72z" fill="none" stroke="currentColor"
-                            stroke-miterlimit="10" stroke-width="32" />
-                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10"
-                            stroke-width="32" d="M283.64 283.64L336 336" />
-                    </svg>
-                </button>
-            </form>
-            <form action="/search/stockid" method="POST"
-                class="flex items-center rounded-md bg-white overflow-hidden w-1/3">
-                @csrf
-                <input type="search" name="search" id="search" placeholder="Stock Id or Chassis..."
-                    value="{{ Request::get('search') ? Request::get('search') : '' }}" class="border-0 w-[85%] text-sm">
-                <button class="p-2 flex items-center justify-between w-[20%]">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                        <path d="M256 80a176 176 0 10176 176A176 176 0 00256 80z" fill="none" stroke="currentColor"
-                            stroke-miterlimit="10" stroke-width="32" />
-                        <path d="M232 160a72 72 0 1072 72 72 72 0 00-72-72z" fill="none" stroke="currentColor"
-                            stroke-miterlimit="10" stroke-width="32" />
-                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10"
-                            stroke-width="32" d="M283.64 283.64L336 336" />
+                <input type="search" name="company" id="company" placeholder="Company.."
+                    class="w-4/5 rounded-md text-xs uppercase border border-transparent focus:border-blue-900 focus:ring-blue-900"
+                    placeholder="Search" />
+                <button
+                    class="inline-flex items-center px-2 py-1 bg-white font-semibold text-xs text-gray-700 uppercase tracking-widest hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-scan-search-icon lucide-scan-search">
+                        <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+                        <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+                        <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+                        <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+                        <circle cx="12" cy="12" r="3" />
+                        <path d="m16 16-1.9-1.9" />
                     </svg>
                 </button>
             </form>
