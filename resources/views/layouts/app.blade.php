@@ -47,8 +47,8 @@
                 <!-- Page Heading -->
                 <header class="h-16">
                     <div class="py-4 px-8 flex items-center justify-between">
-                        <x-success-button>Role</x-success-button>
-                        <x-primary-button>User</x-primary-button>
+                        <x-success-button>{{ Auth::user()->role->name }}</x-success-button>
+                        <x-primary-button>{{ Auth::user()->name }}</x-primary-button>
                     </div>
                 </header>
                 <!-- Page Content -->
