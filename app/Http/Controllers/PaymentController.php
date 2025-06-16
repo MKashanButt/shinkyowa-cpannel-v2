@@ -40,7 +40,11 @@ class PaymentController extends Controller
         }
 
         $validated['user_id'] = Auth::id();
-        $validated['status'] = 'approved';
+
+        if (Auth::user()->hasRole('admin')) {
+
+            $validated['status'] = 'approved';
+        }
 
         Payment::create($validated);
 
