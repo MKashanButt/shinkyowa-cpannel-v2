@@ -7,7 +7,29 @@
                 <x-primary-button>Create</x-primary-button>
             </a>
         </x-header>
-        <div class="w-full h-[390px] overflow-y-scroll">
+        <div class="float-right">
+            <form action="{{ route('stock.search') }}" method="post"
+                class="flex items-center gap-2 rounded-md bg-white border border-gray-300">
+                @csrf
+                <input type="search" name="search" id="search"
+                    class="rounded-md text-xs uppercase border border-transparent focus:border-blue-900 focus:ring-blue-900"
+                    placeholder="Search" />
+                <button
+                    class="inline-flex items-center px-2 py-1 bg-white font-semibold text-xs text-gray-700 uppercase tracking-widest hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 rounded-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-scan-search-icon lucide-scan-search">
+                        <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+                        <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+                        <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+                        <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+                        <circle cx="12" cy="12" r="3" />
+                        <path d="m16 16-1.9-1.9" />
+                    </svg>
+                </button>
+            </form>
+        </div>
+        <div class="w-full h-[340px] overflow-y-scroll">
             <table class="min-w-full divide-y divide-[#e3e3e0] mt-4">
                 <thead class="bg-gray-200 select-none">
                     <tr>
@@ -32,7 +54,7 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-[#e3e3e0]">
-                    @foreach ($stocks as $key => $data)
+                    @forelse ($stocks as $key => $data)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">{{ $data['sid'] }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">
@@ -104,7 +126,13 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="9" class="px-6 py-4 whitespace-nowrap text-xs text-center">
+                                No Records Found
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
                 <tfoot class="flex items-center">
                     {{ $stocks->links() }}
