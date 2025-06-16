@@ -172,4 +172,51 @@ class CustomerAccountController extends Controller
         return redirect()->route('customer-account.index')
             ->with('success', 'Customer account updated successfully.');
     }
+
+    public function searchByEmail(Request $request)
+    {
+        $email = $request->input('email');
+        $customerAccount = CustomerAccount::with('currency', 'agent')
+            ->where('email', $email)
+            ->first();
+
+        if ($customerAccount) {
+            return redirect()->route('customer-account.show', $customerAccount->id);
+        } else {
+            return redirect()->route('customer-account.index')
+                ->with('error', 'Customer account not found.');
+        }
+    }
+
+    public function searchByCompany(Request $request)
+    {
+        $company = $request->input('company');
+        $customerAccount = CustomerAccount::where('company', 'like', '%' . $company . '%')
+            ->with(['currency', 'agent'])
+            ->first();
+
+        if ($customerAccount) {
+            return redirect()->route('customer-account.show', $customerAccount->id);
+        } else {
+            return redirect()->route('customer-account.index')
+                ->with('error', 'No customer accounts found for the specified company.');
+        }
+    }
+
+    public function destroy(CustomerAccount $customerAccount)
+    {
+        DB::transaction(function () use ($customerAccount) {
+            $customerAccount->stock()->delete();
+            $customerAccount->payment()->delete();
+            $customerAccount->delete();
+
+            $user = User::where('email', $customerAccount->email)->first();
+            if ($user) {
+                $user->delete();
+            }
+        });
+
+        return redirect()->route('customer-account.index')
+            ->with('success', 'Customer account deleted successfully.');
+    }
 }
