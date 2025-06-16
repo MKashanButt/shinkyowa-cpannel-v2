@@ -5,8 +5,11 @@
 <x-app-layout>
     <section>
         <x-breadcrumbs :page="'Customer Accounts'" />
+        <x-header>
+            {{ __('Customer Accounts') }}
+        </x-header>
         <x-customer-options />
-        <div class="w-full h-[350px] overflow-y-scroll">
+        <div class="w-full h-[270px] overflow-y-scroll">
             <table class="min-w-full divide-y divide-[#e3e3e0]">
                 <thead class="bg-gray-200 select-none">
                     <tr>
@@ -47,11 +50,9 @@
                             </td>
                             @if (Auth::user()->role != 'agent')
                                 <td class="px-6 py-4 whitespace-nowrap text-sm">
-                                    {{-- <a href="{{ route('agent-customers', $data['agent']->id) }}"> --}}
                                     <x-primary-button class="agent-btn">
                                         {{ $data['agent']->name }}
                                     </x-primary-button>
-                                    {{-- </a> --}}
                                 </td>
                             @endif
                             <td class="px-6 py-4 whitespace-nowrap text-sm">
@@ -59,17 +60,6 @@
                                     <a href="{{ route('customer-account.show', $data) }}">
                                         <x-secondary-button>View Account</x-secondary-button>
                                     </a>
-                                    {{-- @if (Auth::user()->role != 'agent')
-                                        <a href="/customer-account/destroy/{{ $data['customer']->customer_id }}">
-                                            <button class="danger"
-                                                onclick="confirm('Are you sure you want to delete {{ ucwords($stat['customer']->customer_name) }} Account?')">
-                                                Delete
-                                            </button>
-                                        </a>
-                                        <a href="/customer-account/edit/{{ $stat['customer']->customer_id }}">
-                                            <button class="primary">Edit</button>
-                                        </a>
-                                    @endif --}}
                                 </div>
                             </td>
                         </tr>
