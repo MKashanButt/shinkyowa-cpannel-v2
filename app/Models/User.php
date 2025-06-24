@@ -75,8 +75,18 @@ class User extends Authenticatable
         return $this->hasMany(Payment::class);
     }
 
+    public function customerAccount(): HasMany
+    {
+        return $this->hasMany(CustomerAccount::class, 'id');
+    }
+
     public function hasRole(string $role): bool
     {
         return $this->role->name === $role;
+    }
+
+    public function hasPermission(string $permission): bool
+    {
+        return $this->role->permission->contains('name', $permission);
     }
 }
