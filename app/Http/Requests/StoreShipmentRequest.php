@@ -14,8 +14,7 @@ class StoreShipmentRequest extends FormRequest
     public function authorize(): bool
     {
         return Auth::check()
-            && !Auth::user()->hasRole('customer')
-            && !Auth::user()->hasRole('agent');
+            && Auth::user()->hasPermission('add_shipment');
     }
 
     /**

@@ -9,7 +9,7 @@ class UpdatePaymentRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return Auth::check() && Auth::user()->hasRole('admin');
+        return Auth::check() && Auth::user()->hasPermission('can_edit_payment');
     }
 
     public function rules(): array

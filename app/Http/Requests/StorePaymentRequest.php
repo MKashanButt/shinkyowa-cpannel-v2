@@ -12,7 +12,7 @@ class StorePaymentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::check() && Auth::user()->hasRole('admin');
+        return Auth::check() && Auth::user()->hasPermission('add_payment');
     }
 
     /**

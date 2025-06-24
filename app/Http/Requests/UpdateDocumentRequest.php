@@ -14,8 +14,7 @@ class UpdateDocumentRequest extends FormRequest
     public function authorize(): bool
     {
         return Auth::check()
-            && !Auth::user()->hasRole('customer')
-            && !Auth::user()->hasRole('agent');
+            && Auth::user()->hasPermission('can_edit_document');
     }
 
     /**

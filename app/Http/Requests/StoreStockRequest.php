@@ -13,7 +13,7 @@ class StoreStockRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Auth::check() && !Auth::user()->hasRole('customer');
+        return Auth::check() && Auth::user()->hasPermission('add_stock');
     }
 
     /**
