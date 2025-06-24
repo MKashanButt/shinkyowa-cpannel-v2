@@ -5,14 +5,30 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreReservedVehicleRequest;
 use App\Models\CustomerAccount;
 use App\Models\Stock;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReservedVehicleController extends Controller
 {
     public function index()
     {
         $stocks = Stock::with('customerAccount')
-            ->whereNot('customer_account_id', null)
+            ->whereNotNull('customer_account_id')
+            ->when(Auth::user()->hasPermission('view_team_reserved_vehicles'), function ($query) {
+                $managerAgentIds = User::where('manager_id', Auth::id())
+                    ->where('role', 'agent')
+                    ->pluck('id');
+
+                $query->whereHas('customerAccount', function ($q) use ($managerAgentIds) {
+                    $q->whereIn('agent_id', $managerAgentIds);
+                });
+            })
+            ->when(Auth::user()->hasPermission('view_own_reserved_vehicles'), function ($query) {
+                $query->whereHas('customerAccount', function ($q) {
+                    $q->where('agent_id', Auth::id());
+                });
+            })
             ->paginate(8);
 
         return view('reserved-vehicle.index', compact('stocks'));
@@ -22,7 +38,21 @@ class ReservedVehicleController extends Controller
     {
         $stocks = Stock::whereDoesntHave('customerAccount')
             ->pluck('sid', 'id');
-        $customerAccounts = CustomerAccount::pluck('name', 'id');
+        $customerAccounts = CustomerAccount::when(Auth::user()->hasPermission('view_team_reserved_vehicles'), function ($query) {
+            $managerAgentIds = User::where('manager_id', Auth::id())
+                ->where('role', 'agent')
+                ->pluck('id');
+
+            $query->whereHas('customerAccount', function ($q) use ($managerAgentIds) {
+                $q->whereIn('agent_id', $managerAgentIds);
+            });
+        })
+            ->when(Auth::user()->hasPermission('view_own_reserved_vehicles'), function ($query) {
+                $query->whereHas('customerAccount', function ($q) {
+                    $q->where('agent_id', Auth::id());
+                });
+            })
+            ->pluck('name', 'id');
 
         return view('reserved-vehicle.create', compact('stocks', 'customerAccounts'));
     }
@@ -53,7 +83,21 @@ class ReservedVehicleController extends Controller
     {
         $stocks = Stock::whereDoesntHave('customerAccount')
             ->get();
-        $customerAccounts = CustomerAccount::pluck('name', 'id');
+        $customerAccounts = CustomerAccount::when(Auth::user()->hasPermission('view_team_reserved_vehicles'), function ($query) {
+            $managerAgentIds = User::where('manager_id', Auth::id())
+                ->where('role', 'agent')
+                ->pluck('id');
+
+            $query->whereHas('customerAccount', function ($q) use ($managerAgentIds) {
+                $q->whereIn('agent_id', $managerAgentIds);
+            });
+        })
+            ->when(Auth::user()->hasPermission('view_own_reserved_vehicles'), function ($query) {
+                $query->whereHas('customerAccount', function ($q) {
+                    $q->where('agent_id', Auth::id());
+                });
+            })
+            ->pluck('name', 'id');
 
         return view('reserved-vehicle.edit', compact(
             'reserved',
