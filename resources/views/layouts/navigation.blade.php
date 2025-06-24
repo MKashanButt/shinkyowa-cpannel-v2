@@ -57,28 +57,33 @@
                     <path d="M12 17h.01" />
                 </svg>
             </x-nav-link>
-            <x-nav-link :href="route('shipment.index')" :active="request()->routeIs('shipment.*')" class="block py-2">
-                {{ __('Shipments') }}
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 inline-block mr-2">
-                    <path d="M12 10.189V14" />
-                    <path d="M12 2v3" />
-                    <path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6" />
-                    <path
-                        d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76" />
-                    <path
-                        d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
-                </svg>
-            </x-nav-link>
-            <x-nav-link :href="route('document.index')" :active="request()->routeIs('document.*')" class="block py-2">
-                {{ __('Documents') }}
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 inline-block mr-2">
-                    <path
-                        d="m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829l8.414-8.586a4 4 0 1 0-5.657-5.657l-8.379 8.551a6 6 0 1 0 8.485 8.485l8.379-8.551" />
-                </svg>
-            </x-nav-link>
-
+            @if (Auth::check() && Auth::user()->hasPermission('view_shipment'))
+                <x-nav-link :href="route('shipment.index')" :active="request()->routeIs('shipment.*')" class="block py-2">
+                    {{ __('Shipments') }}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-5 h-5 inline-block mr-2">
+                        <path d="M12 10.189V14" />
+                        <path d="M12 2v3" />
+                        <path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6" />
+                        <path
+                            d="M19.38 20A11.6 11.6 0 0 0 21 14l-8.188-3.639a2 2 0 0 0-1.624 0L3 14a11.6 11.6 0 0 0 2.81 7.76" />
+                        <path
+                            d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+                    </svg>
+                </x-nav-link>
+            @endif
+            @if (Auth::check() && Auth::user()->hasPermission('view_documents'))
+                <x-nav-link :href="route('document.index')" :active="request()->routeIs('document.*')" class="block py-2">
+                    {{ __('Documents') }}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-5 h-5 inline-block mr-2">
+                        <path
+                            d="m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829l8.414-8.586a4 4 0 1 0-5.657-5.657l-8.379 8.551a6 6 0 1 0 8.485 8.485l8.379-8.551" />
+                    </svg>
+                </x-nav-link>
+            @endif
         </div>
         <div class="px-4 space-y-1">
             <p
@@ -96,7 +101,7 @@
             </x-nav-link>
             <x-nav-link :href="route('pending-tt.index')" :active="request()->routeIs('pending-tt.*')" class="block py-2">
                 {{ __("Pending TT's") }}
-                @if ($ttcount > 0)
+                @if ($ttcount > 0 && Auth::user()->hasRole('admin'))
                     <div class="relative flex size-5">
                         <span
                             class="absolute inline-flex h-full w-full z-40 animate-ping rounded-full bg-red-400 opacity-75"></span>
@@ -115,84 +120,100 @@
                 @endif
             </x-nav-link>
         </div>
-        <div class="px-4 space-y-1">
-            <p
-                class="text-xs font-semibold text-[#706f6c] uppercase tracking-wider mb-2 bg-blue-900 p-2 text-white rounded-sm">
-                Website
-            </p>
-            <x-nav-link :href="route('inquiry.index')" :active="request()->routeIs('inquiry.*')" class="block py-2">
-                {{ __('Inquiries') }}
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="w-5 h-5 inline-block mr-2">
-                    <path
-                        d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z" />
-                    <path d="M6 12h16" />
-                </svg>
-            </x-nav-link>
-        </div>
-        <div class="px-4 space-y-1">
-            <p
-                class="text-xs font-semibold text-[#706f6c] uppercase tracking-wider mb-2 bg-blue-900 p-2 text-white rounded-sm">
-                Settings
-            </p>
-            <x-nav-link :href="route('country.index')" :active="request()->routeIs('country.*')" class="block py-2">
-                {{ __('Countries') }}
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="w-5 h-5 inline-block mr-2">
-                    <path d="M21.54 15H17a2 2 0 0 0-2 2v4.54" />
-                    <path d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17" />
-                    <path d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05" />
-                    <circle cx="12" cy="12" r="10" />
-                </svg>
-            </x-nav-link>
-            <x-nav-link :href="route('make.index')" :active="request()->routeIs('make.*')" class="block py-2">
-                {{ __('Makes') }}
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="w-5 h-5 inline-block mr-2">
-                    <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
-                    <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
-                    <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
-                    <path d="M10 6h4" />
-                    <path d="M10 10h4" />
-                    <path d="M10 14h4" />
-                    <path d="M10 18h4" />
-                </svg>
-            </x-nav-link>
-            <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.*')" class="block py-2">
-                {{ __('Categories') }}
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="w-5 h-5 inline-block mr-2">
-                    <path d="M3 12h.01" />
-                    <path d="M3 18h.01" />
-                    <path d="M3 6h.01" />
-                    <path d="M8 12h13" />
-                    <path d="M8 18h13" />
-                    <path d="M8 6h13" />
-                </svg>
-            </x-nav-link>
-            <x-nav-link :href="route('currency.index')" :active="request()->routeIs('currency.*')" class="block py-2">
-                {{ __('Currencies') }}
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="w-5 h-5 inline-block mr-2">
-                    <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z" />
-                    <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" />
-                    <path d="M12 17.5v-11" />
-                </svg>
-            </x-nav-link>
-            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="block py-2">
-                {{ __('Users') }}
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="w-5 h-5 inline-block mr-2">
-                    <path d="M18 21a8 8 0 0 0-16 0" />
-                    <circle cx="10" cy="8" r="5" />
-                    <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" />
-                </svg>
-            </x-nav-link>
-        </div>
+        @if (Auth::user()->hasPermission('view_inquiries'))
+            <div class="px-4 space-y-1">
+                <p
+                    class="text-xs font-semibold text-[#706f6c] uppercase tracking-wider mb-2 bg-blue-900 p-2 text-white rounded-sm">
+                    Website
+                </p>
+                <x-nav-link :href="route('inquiry.index')" :active="request()->routeIs('inquiry.*')" class="block py-2">
+                    {{ __('Inquiries') }}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-5 h-5 inline-block mr-2">
+                        <path
+                            d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z" />
+                        <path d="M6 12h16" />
+                    </svg>
+                </x-nav-link>
+            </div>
+        @endif
+        @if (Auth::user()->hasPermission('view_settings'))
+            <div class="px-4 space-y-1">
+                <p
+                    class="text-xs font-semibold text-[#706f6c] uppercase tracking-wider mb-2 bg-blue-900 p-2 text-white rounded-sm">
+                    Settings
+                </p>
+                <x-nav-link :href="route('country.index')" :active="request()->routeIs('country.*')" class="block py-2">
+                    {{ __('Countries') }}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-5 h-5 inline-block mr-2">
+                        <path d="M21.54 15H17a2 2 0 0 0-2 2v4.54" />
+                        <path
+                            d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17" />
+                        <path d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05" />
+                        <circle cx="12" cy="12" r="10" />
+                    </svg>
+                </x-nav-link>
+                <x-nav-link :href="route('make.index')" :active="request()->routeIs('make.*')" class="block py-2">
+                    {{ __('Makes') }}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-5 h-5 inline-block mr-2">
+                        <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" />
+                        <path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" />
+                        <path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" />
+                        <path d="M10 6h4" />
+                        <path d="M10 10h4" />
+                        <path d="M10 14h4" />
+                        <path d="M10 18h4" />
+                    </svg>
+                </x-nav-link>
+                <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.*')" class="block py-2">
+                    {{ __('Categories') }}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-5 h-5 inline-block mr-2">
+                        <path d="M3 12h.01" />
+                        <path d="M3 18h.01" />
+                        <path d="M3 6h.01" />
+                        <path d="M8 12h13" />
+                        <path d="M8 18h13" />
+                        <path d="M8 6h13" />
+                    </svg>
+                </x-nav-link>
+                <x-nav-link :href="route('currency.index')" :active="request()->routeIs('currency.*')" class="block py-2">
+                    {{ __('Currencies') }}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-5 h-5 inline-block mr-2">
+                        <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z" />
+                        <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" />
+                        <path d="M12 17.5v-11" />
+                    </svg>
+                </x-nav-link>
+                <x-nav-link :href="route('permission.index')" :active="request()->routeIs('permission.*')" class="block py-2">
+                    {{ __('Permissions') }}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-5 h-5 inline-block mr-2">
+                        <path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5" />
+                        <path d="M14 6a6 6 0 0 1 6 6v3" />
+                        <path d="M4 15v-3a6 6 0 0 1 6-6" />
+                        <rect x="2" y="15" height="4" rx="1" class="w-5" />
+                    </svg>
+                </x-nav-link>
+                <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.*')" class="block py-2">
+                    {{ __('Users') }}
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-5 h-5 inline-block mr-2">
+                        <path d="M18 21a8 8 0 0 0-16 0" />
+                        <circle cx="10" cy="8" r="5" />
+                        <path d="M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3" />
+                    </svg>
+                </x-nav-link>
+            </div>
+        @endif
 </nav>
