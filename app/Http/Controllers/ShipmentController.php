@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateShipmentRequest;
 use App\Models\Shipment;
 use App\Models\Stock;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ShipmentController extends Controller
 {
@@ -66,9 +67,12 @@ class ShipmentController extends Controller
             ->with('success', 'Shipment updated successfully!');
     }
 
-
     public function destroy(Shipment $shipment)
     {
+        if (Auth::check() && !Auth::user()->hasPermission('can_delete_shipment')) {
+            return abort(403, 'Unauthorized action.');
+        }
+
         $shipment->stock()->detach();
 
         $shipment->delete();
