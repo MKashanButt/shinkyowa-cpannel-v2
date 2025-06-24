@@ -56,7 +56,7 @@
                             value="{{ old('in_yen', $payment->in_yen) }}" />
                         <x-input-error :messages="$errors->get('in_yen')" class="mt-2" />
                     </div>
-                    @if (Auth::user()->hasRole('admin'))
+                    @if (Auth::user()->hasPermission('add_payment_recieved_date'))
                         <div class="flex items-center gap-2">
                             <x-input-label for="payment_recieved_date"
                                 class="w-[32%] after:content-['*'] after:text-red-500">Payment Recieved
