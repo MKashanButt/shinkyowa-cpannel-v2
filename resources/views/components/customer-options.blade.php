@@ -47,18 +47,22 @@
     <div class="w-[45%] h-full flex flex-col gap-2">
         <h3 class="text-white text-xl font-bold uppercase">Actions</h3>
         <div class="w-full flex justify-between items-center gap-2 text-center">
-            <a href={{ route('customer-account.create') }}
-                class="w-1/3 rounded-md bg-green-700 text-white py-3 flex gap-2 items-center justify-center">
-                Add Account
-            </a>
-            @if (Auth::user()->hasRole('admin'))
+            @if (Auth::user()->hasPermission('add_customer'))
+                <a href={{ route('customer-account.create') }}
+                    class="w-1/3 rounded-md bg-green-700 text-white py-3 flex gap-2 items-center justify-center">
+                    Add Account
+                </a>
+            @endif
+            @if (Auth::user()->hasPermission('add_payment'))
                 <a href="{{ route('payment.create') }}" class="w-1/3 rounded-md bg-white py-3">
                     Add Payment
                 </a>
             @endif
-            <a href="{{ route('reserved-vehicle.create') }}" class="w-1/3 rounded-md bg-white py-3">
-                Add Vehicle
-            </a>
+            @if (Auth::user()->hasPermission('reserve_vehicle'))
+                <a href="{{ route('reserved-vehicle.create') }}" class="w-1/3 rounded-md bg-white py-3">
+                    Add Vehicle
+                </a>
+            @endif
         </div>
     </div>
 </div>
