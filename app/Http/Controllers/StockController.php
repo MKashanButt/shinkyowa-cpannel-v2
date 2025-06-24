@@ -121,21 +121,17 @@ class StockController extends Controller
     {
         $stock = Stock::findOrFail($stock);
 
-        // Handle thumbnail
         if ($request->hasFile('thumbnail')) {
-            // Delete old thumbnail if exists
             if ($stock->thumbnail) {
                 Storage::delete($stock->thumbnail);
             }
             $path = $request->file('thumbnail')->store('thumbnails');
             $stock->thumbnail = $path;
         } elseif ($request->has('remove_thumbnail')) {
-            // Remove thumbnail if checkbox checked
             Storage::delete($stock->thumbnail);
             $stock->thumbnail = null;
         }
 
-        // Handle gallery images
         $currentImages = json_decode($stock->images) ?? [];
         $imagesToKeep = [];
 
@@ -147,7 +143,6 @@ class StockController extends Controller
             }
         }
 
-        // Add new images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $path = $image->store('vehicle-images');
@@ -157,7 +152,6 @@ class StockController extends Controller
 
         $stock->images = json_encode($imagesToKeep);
 
-        // Update other fields
         $stock->update($request->except(['thumbnail', 'images', 'remove_thumbnail', 'remove_images']));
 
         return redirect()->route('stock.index')->with('success', 'Stock updated successfully');
@@ -185,6 +179,10 @@ class StockController extends Controller
 
     public function destroy($id)
     {
+        if (Auth::check() && !Auth::user()->hasPermission('can_delete_stock')) {
+            return abort(403, 'Unauthorized action.');
+        }
+
         $stock = Stock::find($id);
 
         if (!$stock) {
