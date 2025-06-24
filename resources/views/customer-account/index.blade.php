@@ -48,7 +48,7 @@
                                 class="px-6 py-4 whitespace-nowrap text-xs {{ $data['buying'] - $data['deposit'] < 0 ? 'text-red-700' : 'text-green-700' }}">
                                 {{ number_format($data['buying'] - $data['deposit']) }}
                             </td>
-                            @if (Auth::user()->role != 'agent')
+                            @if (Auth::user()->hasPermission('can_see_agent_name'))
                                 <td class="px-6 py-4 whitespace-nowrap text-sm">
                                     <x-primary-button class="agent-btn">
                                         {{ $data['agent']->name }}

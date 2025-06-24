@@ -253,15 +253,19 @@
             </div>
             <!-- Action Buttons -->
             <div class="px-6 py-4 flex justify-end gap-4">
-                <a href="{{ route('customer-account.edit', $customerAccount) }}">
-                    <x-secondary-button>Edit</x-secondary-button>
-                </a>
-                <form action="{{ route('customer-account.destroy', $customerAccount) }}" method="POST"
-                    onsubmit="return confirm('Are you sure you want to delete this customer account?')">
-                    @csrf
-                    @method('DELETE')
-                    <x-danger-button type="submit">Delete</x-danger-button>
-                </form>
+                @if (Auth::user()->hasPermission('can_edit_customer'))
+                    <a href="{{ route('customer-account.edit', $customerAccount) }}">
+                        <x-secondary-button>Edit</x-secondary-button>
+                    </a>
+                @endif
+                @if (Auth::user()->hasPermission('can_delete_customer'))
+                    <form action="{{ route('customer-account.destroy', $customerAccount) }}" method="POST"
+                        onsubmit="return confirm('Are you sure you want to delete this customer account?')">
+                        @csrf
+                        @method('DELETE')
+                        <x-danger-button type="submit">Delete</x-danger-button>
+                    </form>
+                @endif
             </div>
         </div>
     </section>
