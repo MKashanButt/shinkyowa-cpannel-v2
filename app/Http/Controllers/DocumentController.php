@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateDocumentRequest;
 use App\Models\Document;
 use App\Models\Stock;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller
@@ -80,6 +81,10 @@ class DocumentController extends Controller
 
     public function destroy(Document $document)
     {
+        if (Auth::check() && !Auth::user()->hasPermission('can_delete_document')) {
+            return abort(403, 'Unauthorized action.');
+        }
+
         $files = [
             $document->japanese_export,
             $document->english_export,
