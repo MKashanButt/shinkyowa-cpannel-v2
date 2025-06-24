@@ -7,6 +7,7 @@ use App\Http\Requests\UpdatePaymentRequest;
 use App\Models\CustomerAccount;
 use App\Models\Payment;
 use App\Models\Stock;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -16,6 +17,16 @@ class PaymentController extends Controller
     public function index()
     {
         $payments = Payment::with('customerAccount')
+            ->when(Auth::user()->hasPermission('view_team_payments'), function ($query) {
+                $managerAgentIds = User::where('manager_id', Auth::id())
+                    ->where('role', 'agent')
+                    ->pluck('id');
+
+                $query->whereIn('user_id', $managerAgentIds);
+            })
+            ->when(Auth::user()->hasPermission('view_own_payments'), function ($query) {
+                $query->where('user_id', Auth::id());
+            })
             ->paginate(8);
 
         return view('payment.index', compact('payments'));
@@ -23,7 +34,21 @@ class PaymentController extends Controller
 
     public function create()
     {
-        $customerAccounts = CustomerAccount::pluck('name', 'id');
+        $customerAccounts = CustomerAccount::when(Auth::user()->hasPermission('view_team_reserved_vehicles'), function ($query) {
+            $managerAgentIds = User::where('manager_id', Auth::id())
+                ->where('role', 'agent')
+                ->pluck('id');
+
+            $query->whereHas('customerAccount', function ($q) use ($managerAgentIds) {
+                $q->whereIn('agent_id', $managerAgentIds);
+            });
+        })
+            ->when(Auth::user()->hasPermission('view_own_reserved_vehicles'), function ($query) {
+                $query->whereHas('customerAccount', function ($q) {
+                    $q->where('agent_id', Auth::id());
+                });
+            })
+            ->pluck('name', 'id');
         $stocks = Stock::pluck('sid', 'id');
 
         return view('payment.create', compact('customerAccounts', 'stocks'));
@@ -54,7 +79,21 @@ class PaymentController extends Controller
 
     public function edit(Payment $payment)
     {
-        $customerAccounts = CustomerAccount::pluck('name', 'id');
+        $customerAccounts = CustomerAccount::when(Auth::user()->hasPermission('view_team_reserved_vehicles'), function ($query) {
+            $managerAgentIds = User::where('manager_id', Auth::id())
+                ->where('role', 'agent')
+                ->pluck('id');
+
+            $query->whereHas('customerAccount', function ($q) use ($managerAgentIds) {
+                $q->whereIn('agent_id', $managerAgentIds);
+            });
+        })
+            ->when(Auth::user()->hasPermission('view_own_reserved_vehicles'), function ($query) {
+                $query->whereHas('customerAccount', function ($q) {
+                    $q->where('agent_id', Auth::id());
+                });
+            })
+            ->pluck('name', 'id');
         $stocks = Stock::pluck('sid', 'id');
 
         return view('payment.edit', compact('payment', 'customerAccounts', 'stocks'));
@@ -81,6 +120,10 @@ class PaymentController extends Controller
 
     public function destroy(Payment $payment)
     {
+        if (Auth::check() && !Auth::user()->hasPermission('can_delete_payment')) {
+            return abort(403, 'Unauthorized action.');
+        }
+
         try {
             if ($payment->file) {
                 Storage::disk('public')->delete($payment->file);
