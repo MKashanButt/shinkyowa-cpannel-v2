@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCustomerAccountRequest;
 use App\Models\Country;
 use App\Models\Currency;
 use App\Models\CustomerAccount;
+use App\Models\Notification;
 use App\Models\Payment;
 use App\Models\Stock;
 use App\Models\User;
@@ -26,6 +27,15 @@ class CustomerAccountController extends Controller
                 'deposit' => Payment::selectRaw('COALESCE(SUM(amount), 0)')
                     ->whereColumn('customer_account_id', 'customer_accounts.id')
             ])
+            ->when(Auth::user()->hasPermission('view_team_customers'), function ($query) {
+                $managerAgentIds = User::where('manager_id', Auth::id())
+                    ->where('role', 'agent')
+                    ->pluck('id');
+                $query->whereIn('agent_id', $managerAgentIds);
+            })
+            ->when(Auth::user()->hasPermission('view_own_customers'), function ($query) {
+                $query->where('agent_id', Auth::id());
+            })
             ->orderBy('id', 'DESC')
             ->paginate(10);
 
@@ -75,6 +85,11 @@ class CustomerAccountController extends Controller
             'email'    => $validated['email'],
             'password' => bcrypt($validated['password']),
             'role'     => 'customer',
+        ]);
+
+        Notification::create([
+            'message' => 'New customer account created: ' . $validated['name'] . ' by ' . Auth::user()->name,
+            'type'    => 'success',
         ]);
 
         return redirect()->route('customer-account.index')
@@ -169,6 +184,11 @@ class CustomerAccountController extends Controller
             $user->update($userData);
         }
 
+        Notification::create([
+            'message' => 'Customer Account edited: ' . $validated['name'] . ' by ' . Auth::user()->name,
+            'type'    => 'success',
+        ]);
+
         return redirect()->route('customer-account.index')
             ->with('success', 'Customer account updated successfully.');
     }
@@ -205,6 +225,10 @@ class CustomerAccountController extends Controller
 
     public function destroy(CustomerAccount $customerAccount)
     {
+        if (Auth::check() && !Auth::user()->hasPermission('can_delete_customer')) {
+            return abort(403, 'Unauthorized action.');
+        }
+
         DB::transaction(function () use ($customerAccount) {
             $customerAccount->stock()->delete();
             $customerAccount->payment()->delete();
@@ -215,6 +239,11 @@ class CustomerAccountController extends Controller
                 $user->delete();
             }
         });
+
+        Notification::create([
+            'message' => 'Customer Account deleted: ' . $validated['name'] . ' by ' . Auth::user()->name,
+            'type'    => 'danger',
+        ]);
 
         return redirect()->route('customer-account.index')
             ->with('success', 'Customer account deleted successfully.');
