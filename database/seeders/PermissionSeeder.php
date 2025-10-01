@@ -86,5 +86,12 @@ class PermissionSeeder extends Seeder
         ]);
 
         $permission->role()->attach([1, 2]);
+
+        // Admin Only Permissions
+        $permission = Permission::create([
+            'name' => 'view_notifications',
+        ]);
+
+        $permission->role()->attach([1, 2]);
     }
 }
