@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Payment;
+use Illuminate\Database\Events\MigrationsEnded;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,11 +24,13 @@ class PendingTTCount extends ServiceProvider
      */
     public function boot(): void
     {
-        $ttcount = Payment::where('status', 'not approved')
-            ->count();
+        if(Schema::hasTable('payments')){
+            $ttcount = Payment::where('status', 'not approved')
+                ->count();
 
-        View::composer('*', function ($view) use ($ttcount) {
-            $view->with('ttcount', $ttcount);
-        });
+            View::composer('*', function ($view) use ($ttcount) {
+                $view->with('ttcount', $ttcount);
+            });
+        }
     }
 }
