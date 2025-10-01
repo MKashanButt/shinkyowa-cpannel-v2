@@ -34,7 +34,8 @@
                     @foreach ($inquiries as $key => $data)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">
-                                {{ str_pad($sno + $key + 1, 2, '0', STR_PAD_LEFT) }}</td>
+                                {{ str_pad($sno + $key + 1, 2, '0', STR_PAD_LEFT) }}
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">{{ $data['name'] }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">{{ $data['email'] }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">{{ $data['phone'] }}</td>

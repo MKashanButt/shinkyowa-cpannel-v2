@@ -32,8 +32,9 @@
                         <th class="px-6 py-3 text-left text-xs font-medium text-[#706f6c] uppercase tracking-wider">
                             BL Copy</th>
                         @if (
-                            (Auth::check() && Auth::user()->hasPermission('can_edit_document')) ||
-                                (Auth::check() && Auth::user()->hasPermission('can_delete_document')))
+                                (Auth::check() && Auth::user()->hasPermission('can_edit_document')) ||
+                                (Auth::check() && Auth::user()->hasPermission('can_delete_document'))
+                            )
                             <th class="px-6 py-3 text-left text-xs font-medium text-[#706f6c] uppercase tracking-wider">
                                 Actions</th>
                         @endif
@@ -43,7 +44,8 @@
                     @foreach ($documents as $key => $data)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">
-                                {{ str_pad($sno + $key + 1, 2, '0', STR_PAD_LEFT) }}</td>
+                                {{ str_pad($sno + $key + 1, 2, '0', STR_PAD_LEFT) }}
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">
                                 {{ 'SKI-' . $data['stock']->sid }}
                             </td>
@@ -70,10 +72,8 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">
                                 @if ($data['inspection_certificate'])
-                                    <a href="{{ asset('storage/' . $data['inspection_certificate']) }}"
-                                        target="__blank">
-                                        <img src="{{ asset('icons/pdf.png') }}" alt="inspection_certificate"
-                                            class="w-12 h-12">
+                                    <a href="{{ asset('storage/' . $data['inspection_certificate']) }}" target="__blank">
+                                        <img src="{{ asset('icons/pdf.png') }}" alt="inspection_certificate" class="w-12 h-12">
                                     </a>
                                 @endif
                             </td>

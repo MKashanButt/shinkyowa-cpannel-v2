@@ -37,13 +37,16 @@
                     @foreach ($accounts as $key => $data)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">
-                                {{ str_pad($sno + $key + 1, 2, '0', STR_PAD_LEFT) }}</td>
+                                {{ str_pad($sno + $key + 1, 2, '0', STR_PAD_LEFT) }}
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">{{ $data['name'] }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">{{ $data['company'] }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs text-green-700">
-                                {{ '+' . number_format($data['buying']) }}</td>
+                                {{ '+' . number_format($data['buying']) }}
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs text-green-700">
-                                {{ '+' . number_format($data['deposit']) }}</td>
+                                {{ '+' . number_format($data['deposit']) }}
+                            </td>
                             <td
                                 class="px-6 py-4 whitespace-nowrap text-xs {{ $data['buying'] - $data['deposit'] < 0 ? 'text-red-700' : 'text-green-700' }}">
                                 {{ number_format($data['buying'] - $data['deposit']) }}

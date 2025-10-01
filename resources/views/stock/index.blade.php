@@ -18,9 +18,9 @@
                     placeholder="Search" />
                 <button
                     class="inline-flex items-center px-2 py-1 bg-white font-semibold text-xs text-gray-700 uppercase tracking-widest hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-25 transition ease-in-out duration-150 rounded-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="lucide lucide-scan-search-icon lucide-scan-search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-scan-search-icon lucide-scan-search">
                         <path d="M3 7V5a2 2 0 0 1 2-2h2" />
                         <path d="M17 3h2a2 2 0 0 1 2 2v2" />
                         <path d="M21 17v2a2 2 0 0 1-2 2h-2" />

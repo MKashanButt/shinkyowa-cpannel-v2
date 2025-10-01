@@ -28,8 +28,9 @@
                         <th class="px-6 py-3 text-left text-xs font-medium text-[#706f6c] uppercase tracking-wider">
                             ETA</th>
                         @if (
-                            (Auth::check() && Auth::user()->hasPermission('can_edit_shipment')) ||
-                                (Auth::check() && Auth::user()->hasPermission('can_delete_shipment')))
+                                (Auth::check() && Auth::user()->hasPermission('can_edit_shipment')) ||
+                                (Auth::check() && Auth::user()->hasPermission('can_delete_shipment'))
+                            )
                             <th class="px-6 py-3 text-left text-xs font-medium text-[#706f6c] uppercase tracking-wider">
                                 Actions</th>
                         @endif
@@ -39,7 +40,8 @@
                     @foreach ($shipments as $key => $data)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">
-                                {{ str_pad($sno + $key + 1, 2, '0', STR_PAD_LEFT) }}</td>
+                                {{ str_pad($sno + $key + 1, 2, '0', STR_PAD_LEFT) }}
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">
                                 @foreach ($data['stock'] as $item)
                                     {{ 'SKI-' . $item['sid'] }}
