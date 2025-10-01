@@ -39,12 +39,13 @@
                     @foreach ($notifications as $key => $data)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">
-                                {{ str_pad($sno + $key + 1, 2, '0', STR_PAD_LEFT) }}</td>
+                                {{ str_pad($sno + $key + 1, 2, '0', STR_PAD_LEFT) }}
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">{{ $data['message'] }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">
                                 <div class="flex
-                                gap-4">
+                                    gap-4">
                                     <form action="{{ route('notification.destroy', $data) }}" method="POST"
                                         x-data="{ open: false }">
                                         @method('DELETE')
