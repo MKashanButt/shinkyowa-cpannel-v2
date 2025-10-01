@@ -12,8 +12,13 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+    @if (config('app.env') == 'production')
+        <link rel="stylesheet" href="{{ asset('build/assets/app-OAMpoZUc.css') }}">
+        <script src="{{ asset('build/assets/app-Bf4POITK.js') }}"></script>
+    @else
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @endif
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Flowbite -->
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
@@ -78,10 +83,9 @@
                                             <p
                                                 class="w-full flex items-center justify-between text-xs font-semibold uppercase tracking-widest">
                                                 Notifications
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                    fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                    class="w-5 h-5 inline-block">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round" class="w-5 h-5 inline-block">
                                                     <path d="M10.268 21a2 2 0 0 0 3.464 0" />
                                                     <path
                                                         d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" />
