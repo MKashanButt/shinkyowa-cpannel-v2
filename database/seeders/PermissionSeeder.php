@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Permission;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PermissionSeeder extends Seeder
@@ -54,9 +53,15 @@ class PermissionSeeder extends Seeder
             'name' => 'view_settings',
         ]);
 
-        // Admin & Manager Only Permissions
         $permission->role()->attach([1, 2]);
 
+        $permission = Permission::create([
+            'name' => 'can_edit_customer',
+        ]);
+
+        $permission->role()->attach([1, 2, 3]);
+
+        // Admin & Manager Only Permissions
         $permission = Permission::create([
             'name' => 'add_shipment',
         ]);
@@ -87,11 +92,30 @@ class PermissionSeeder extends Seeder
 
         $permission->role()->attach([1, 2]);
 
+        $permission = Permission::create([
+            'name' => 'add_stock',
+        ]);
+
+        $permission->role()->attach([1, 2]);
+
+        // Manager Only Permissions
+        $permission = Permission::create([
+            'name' => 'view_team_members',
+        ]);
+
+        $permission->role()->attach([2]);
+
         // Admin Only Permissions
         $permission = Permission::create([
             'name' => 'view_notifications',
         ]);
 
-        $permission->role()->attach([1, 2]);
+        $permission->role()->attach([1]);
+
+        $permission = Permission::create([
+            'name' => 'view_permissions',
+        ]);
+
+        $permission->role()->attach([1]);
     }
 }
