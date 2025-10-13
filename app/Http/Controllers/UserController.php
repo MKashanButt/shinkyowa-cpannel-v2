@@ -6,7 +6,6 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -14,6 +13,13 @@ class UserController extends Controller
     {
         $users = User::withCount('customerAccount', 'payment', 'agentManager')
             ->with('role')
+            ->when(Auth::user()->hasPermission('view_team_members'), function ($query) {
+                $managerAgentIds = User::where('manager_id', Auth::id())
+                    ->where('role', 'agent')
+                    ->pluck('id');
+                $query->whereIn('id', $managerAgentIds);
+            })
+            ->orderBy('id', 'DESC')
             ->paginate(8);
 
         return view('user.index', compact('users'));
