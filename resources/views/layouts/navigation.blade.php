@@ -2,7 +2,7 @@
     <!-- Logo -->
     <div class="h-16 flex items-center px-4 border-b-2 border-white">
         <a href="{{ route('dashboard') }}" class="flex items-center">
-            <x-application-logo class="block h-9 w-auto fill-current fill-white" />
+            <x-application-logo class="w-full block h-9 fill-current fill-white" />
         </a>
     </div>
 
@@ -187,17 +187,19 @@
                         <path d="M12 17.5v-11" />
                     </svg>
                 </x-nav-link>
-                <x-nav-link :href="route('permission.index')" :active="request()->routeIs('permission.*')"
-                    class="block py-2">
-                    {{ __('Permissions') }}
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 inline-block mr-2">
-                        <path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5" />
-                        <path d="M14 6a6 6 0 0 1 6 6v3" />
-                        <path d="M4 15v-3a6 6 0 0 1 6-6" />
-                        <rect x="2" y="15" height="4" rx="1" class="w-5" />
-                    </svg>
-                </x-nav-link>
+                @if (Auth::user()->hasPermission('view_permissions'))
+                    <x-nav-link :href="route('permission.index')" :active="request()->routeIs('permission.*')"
+                        class="block py-2">
+                        {{ __('Permissions') }}
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 inline-block mr-2">
+                            <path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5" />
+                            <path d="M14 6a6 6 0 0 1 6 6v3" />
+                            <path d="M4 15v-3a6 6 0 0 1 6-6" />
+                            <rect x="2" y="15" height="4" rx="1" class="w-5" />
+                        </svg>
+                    </x-nav-link>
+                @endif
                 <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.*')" class="block py-2">
                     {{ __('Users') }}
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
