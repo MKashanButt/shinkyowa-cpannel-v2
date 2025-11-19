@@ -40,7 +40,7 @@
                     </div>
                     <div class="flex items-start gap-2">
                         <dt class="w-[32%] font-semibold">Currency</dt>
-                        <dd class="w-4/5 text-gray-700">{{ $customerAccount->currency->name ?? 'N/A' }}</dd>
+                        <dd class="w-4/5 text-gray-700">{{ $customerAccount->currency->code ?? 'N/A' }}</dd>
                     </div>
                     <div class="flex items-start gap-2 col-span-2">
                         <dt class="w-[14%] font-semibold">Description</dt>
@@ -237,7 +237,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm">
                                         <span
                                             class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                                    {{ $payment->status == 'approved' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
+                                                                                    {{ $payment->status == 'approved' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
                                             {{ ucfirst($payment->status) }}
                                         </span>
                                     </td>
