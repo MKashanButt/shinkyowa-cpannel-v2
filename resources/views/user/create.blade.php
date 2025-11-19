@@ -15,15 +15,13 @@
                     <div class="flex items-center gap-2">
                         <x-input-label for="name"
                             class="w-[32%] after:content-['*'] after:text-red-500">Name</x-input-label>
-                        <x-text-input type="text" id="name" name="name" class="w-4/5"
-                            value="{{ old('name') }}" />
+                        <x-text-input type="text" id="name" name="name" class="w-4/5" value="{{ old('name') }}" />
                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                     </div>
                     <div class="flex items-center gap-2">
                         <x-input-label for="email"
                             class="w-[32%] after:content-['*'] after:text-red-500">Email</x-input-label>
-                        <x-text-input type="email" id="email" name="email" class="w-4/5"
-                            value="{{ old('email') }}" />
+                        <x-text-input type="email" id="email" name="email" class="w-4/5" value="{{ old('email') }}" />
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
                 </div>
@@ -90,7 +88,7 @@
                 }
             }
 
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 const AGENT_ROLE_ID = 3;
 
                 const managerField = document.getElementById('manager-field');
