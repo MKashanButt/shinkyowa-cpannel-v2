@@ -45,7 +45,11 @@ class CustomerAccountController extends Controller
     public function create()
     {
         $countries = Country::pluck('name', 'id');
-        $agents = User::where('role', 'agent')->pluck('name', 'id');
+
+        $agentUsers = User::where('role', 'agent')->pluck('name', 'id');
+        $managerUsers = User::where('role', 'managers')->pluck('name', 'id');
+        $overallUsers = $managerUsers->merge($agentUsers);
+
         $currencies = Currency::pluck('code', 'id');
         $customerIdLatest = CustomerAccount::latest()->value('cid');
         $customerId = $customerIdLatest ? $customerIdLatest : 1;
@@ -53,7 +57,7 @@ class CustomerAccountController extends Controller
         return view('customer-account.create', compact(
             'countries',
             'customerId',
-            'agents',
+            'overallUsers',
             'currencies'
         ));
     }
@@ -139,14 +143,17 @@ class CustomerAccountController extends Controller
     public function edit(CustomerAccount $customerAccount)
     {
         $countries = Country::pluck('name', 'id');
-        $agents = User::where('role', 'agent')
-            ->pluck('name', 'id');
+
+        $agentUsers = User::where('role', 'agent')->pluck('name', 'id');
+        $managerUsers = User::where('role', 'managers')->pluck('name', 'id');
+        $overallUsers = $managerUsers->merge($agentUsers);
+
         $currencies = Currency::pluck('code', 'id');
 
         return view('customer-account.edit', compact(
             'customerAccount',
             'countries',
-            'agents',
+            'overallUsers',
             'currencies'
         ));
     }
