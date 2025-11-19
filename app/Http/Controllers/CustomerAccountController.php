@@ -88,7 +88,7 @@ class CustomerAccountController extends Controller
             'name'     => $validated['name'],
             'email'    => $validated['email'],
             'password' => bcrypt($validated['password']),
-            'role'     => 'customer',
+            'role_id'     => 4,
         ]);
 
         Notification::create([
