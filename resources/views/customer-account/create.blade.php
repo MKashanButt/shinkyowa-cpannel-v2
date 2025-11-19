@@ -3,7 +3,9 @@
         <x-breadcrumbs :page="'Customer Account'" :subpage="'Add'" />
         <div class="flex px-2 py-4 items-center justify-between">
             <h1 class="text-xl">Add Customer Account</h1>
-            <x-primary-button>Go Back</x-primary-button>
+            <a href="{{ route('customer-account.index') }}">
+                <x-primary-button>Go Back</x-primary-button>
+            </a>
         </div>
         <form action="{{ route('customer-account.store') }}" method="POST"
             class="w-full h-[390px] overflow-y-scroll py-4 px-2 grid grid-cols-1 gap-4">
