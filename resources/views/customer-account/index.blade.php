@@ -10,7 +10,7 @@
         </x-header>
         <x-customer-options />
         <div class="w-full h-[270px] overflow-y-scroll">
-            <table class="min-w-full divide-y divide-[#e3e3e0]">
+            <table class="min-w-full divide-y divide-[#e3e3e0] mt-4">
                 <thead class="bg-gray-200 select-none">
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium text-[#706f6c] uppercase tracking-wider">
