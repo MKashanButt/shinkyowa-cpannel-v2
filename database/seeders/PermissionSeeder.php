@@ -117,5 +117,11 @@ class PermissionSeeder extends Seeder
         ]);
 
         $permission->role()->attach([1]);
+
+        $permission = Permission::create([
+            'name' => 'can_delete_stock',
+        ]);
+
+        $permission->role()->attach([1]);
     }
 }
