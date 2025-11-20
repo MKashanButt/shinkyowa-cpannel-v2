@@ -28,7 +28,7 @@ class UpdateCategoryRequest extends FormRequest
                 'required',
                 'string',
                 'max:100',
-                'unique:categories,name' . $this->country->id
+                'unique:categories,name' . $this->category->id
             ],
         ];
     }
