@@ -75,6 +75,7 @@ class StockController extends Controller
         $validated["sid"] = $sid;
         $validated["agent_id"] = Auth::id();
         $validated['images'] = json_encode($imagePaths);
+        $validated['features'] = json_encode($validated['features']);
 
         Stock::create($validated);
 

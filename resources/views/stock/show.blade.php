@@ -1,3 +1,6 @@
+@php
+    $features = json_decode($stock["features"], true) ?? [];
+@endphp
 <x-app-layout>
     <section>
         <x-breadcrumbs :page="'Vehicles'" :subpage="'Stock'" :category="'Details'" />
@@ -43,7 +46,8 @@
                 <dl class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div class="py-2">
                         <dt class="text-sm font-medium text-gray-500">Stock ID</dt>
-                        <dd class="mt-1 text-sm text-gray-900">{{ $stock['sid'] }}</dd>
+                        <dd class="mt-1 text-sm text-gray-900">SKI-{{ str_pad($stock['sid'], 2, 0, STR_PAD_LEFT) }}
+                        </dd>
                     </div>
                     <div class="py-2">
                         <dt class="text-sm font-medium text-gray-500">Chassis Number</dt>
@@ -115,8 +119,12 @@
             <!-- Features Section -->
             <div class="mb-8">
                 <h2 class="text-lg font-semibold mb-4 border-b pb-2">Features</h2>
-                <div class="prose prose-sm max-w-none">
-                    {!! nl2br(e($stock['features'])) !!}
+                <div class="prose prose-sm max-w-none flex flex-wrap gap-2">
+                    @foreach ($features as $feature)
+                        <span class="px-2 py-1 bg-gray-200 text-gray-800 rounded text-sm">
+                            {{ ucwords(str_replace('_', ' ', $feature)) }}
+                        </span>
+                    @endforeach
                 </div>
             </div>
 

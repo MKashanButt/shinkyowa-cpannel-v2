@@ -53,7 +53,8 @@ class StoreStockRequest extends FormRequest
             'doors' => 'required|integer|min:1|max:10',
             'category_id' => 'required|exists:categories,id',
             'body_type_id' => 'required|exists:body_types,id',
-            'features' => 'required|string|max:1000'
+            'features' => 'required|array',
+            'features.*' => 'string|max:255',
         ];
     }
 
