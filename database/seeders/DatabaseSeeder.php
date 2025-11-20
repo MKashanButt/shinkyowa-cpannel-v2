@@ -11,16 +11,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // $this->call([
-        //     BodyTypeSeeder::class,
-        //     CountrySeeder::class,
-        //     CurrencySeeder::class,
-        //     RoleSeeder::class,
-        //     MakeSeeder::class,
-        //     UserSeeder::class,
-        //     PermissionSeeder::class
-        // ]);
         $this->call([
+            BodyTypeSeeder::class,
+            CountrySeeder::class,
+            CurrencySeeder::class,
+            RoleSeeder::class,
+            MakeSeeder::class,
+            UserSeeder::class,
+            PermissionSeeder::class,
             OldUserSeeder::class,
             CustomerAccountSeeder::class,
         ]);
