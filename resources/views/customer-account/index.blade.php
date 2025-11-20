@@ -68,6 +68,9 @@
                         </tr>
                     @endforeach
                 </tbody>
+                <tfoot class="flex items-center">
+                    {{ $accounts->links() }}
+                </tfoot>
             </table>
         </div>
     </section>
