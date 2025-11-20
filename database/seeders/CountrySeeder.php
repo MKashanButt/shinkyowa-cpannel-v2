@@ -13,44 +13,40 @@ class CountrySeeder extends Seeder
      */
     public function run(): void
     {
-        Country::create([
-            'name' => 'Jamaica',
-        ]);
-
-        Country::create([
-            'name' => 'Bahamas',
-        ]);
-
-        Country::create([
-            'name' => 'Guyana',
-        ]);
-
-        Country::create([
-            'name' => 'Barbados',
-        ]);
-
-        Country::create([
-            'name' => 'Kenya',
-        ]);
-
-        Country::create([
-            'name' => 'Tanzania',
-        ]);
-
-        Country::create([
-            'name' => 'Ireland',
-        ]);
-
-        Country::create([
-            'name' => 'UK',
-        ]);
-
-        Country::create([
-            'name' => 'Pakistan',
-        ]);
-
-        Country::create([
-            'name' => 'Mauritius',
+        Country::insert([
+            [
+                'name' => 'Jamaica',
+            ],
+            [
+                'name' => 'Bahamas',
+            ],
+            [
+                'name' => 'Guyana',
+            ],
+            [
+                'name' => 'Barbados',
+            ],
+            [
+                'name' => 'Kenya',
+            ],
+            [
+                'name' => 'Tanzania',
+            ],
+            [
+                'name' => 'Ireland',
+            ],
+            [
+                'name' => 'UK',
+            ],
+            [
+                'name' => 'Pakistan',
+            ],
+            [
+                'name' => 'Mauritius',
+            ],
+            [
+                'name' => 'Antigua and Barbuda'
+            ]
         ]);
     }
 }
