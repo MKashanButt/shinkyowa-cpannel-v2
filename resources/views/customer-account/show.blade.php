@@ -16,7 +16,9 @@
                 <dl class="grid grid-cols-3 gap-4 mt-4">
                     <div class="flex items-start gap-2">
                         <dt class="w-[32%] font-semibold">Customer ID</dt>
-                        <dd class="w-4/5 text-gray-700">{{ 'SKC-0' . $customerAccount->cid }}</dd>
+                        <dd class="w-4/5 text-gray-700">
+                            SKC-{{ str_pad($customerAccount->cid, 2, '0', STR_PAD_LEFT) }}
+                        </dd>
                     </div>
                     <div class="flex items-start gap-2">
                         <dt class="w-[32%] font-semibold">Name</dt>
@@ -237,7 +239,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm">
                                         <span
                                             class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                                                                    {{ $payment->status == 'approved' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
+                                                                                                                                    {{ $payment->status == 'approved' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
                                             {{ ucfirst($payment->status) }}
                                         </span>
                                     </td>

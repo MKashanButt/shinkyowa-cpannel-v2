@@ -58,7 +58,8 @@
                 <tbody class="bg-white divide-y divide-[#e3e3e0]">
                     @forelse ($stocks as $key => $data)
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-xs">{{ $data['sid'] }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-xs">
+                                SKI-{{ str_pad($data['sid'], 2, '0', STR_PAD_LEFT) }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">
                                 @if ($data['thumbnail'])
                                     <img src="{{ asset('storage/' . $data['thumbnail']) }}" alt="vehicle image"
