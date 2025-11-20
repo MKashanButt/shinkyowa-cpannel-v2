@@ -170,7 +170,7 @@ class CustomerAccountSeeder extends Seeder
                 'agent_id' => 5,
             ],
             [
-                'cid' => '11',
+                'cid' => '12',
                 'name' => 'damion rhoden',
                 'company' => 'ACORN SALES AUTO LTD',
                 'phone' => '18763335555',
@@ -185,7 +185,7 @@ class CustomerAccountSeeder extends Seeder
             ],
             // Asad
             [
-                'cid' => '12',
+                'cid' => '13',
                 'name' => 'MARK AUTO SPARE',
                 'company' => 'MARK AUTO SPARE',
                 'phone' => '12464379819',
