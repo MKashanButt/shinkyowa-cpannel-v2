@@ -16,9 +16,13 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShipmentController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\StockRenderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+Route::middleware('authKey')->group(function () {
+    Route::get('/api/stock', [StockRenderController::class, 'index']);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])
