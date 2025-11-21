@@ -58,7 +58,7 @@ class CustomerAccountController extends Controller
 
         $currencies = Currency::pluck('code', 'id');
         $customerIdLatest = CustomerAccount::latest()->value('cid');
-        $customerId = $customerIdLatest ? $customerIdLatest : 1;
+        $customerId = $customerIdLatest ? $customerIdLatest + 1 : 1;
 
         return view('customer-account.create', compact(
             'countries',
