@@ -73,7 +73,7 @@ class PermissionSeeder extends Seeder
             'name' => 'view_team_customers',
         ]);
 
-        $permission->role()->attach([3]);
+        $permission->role()->attach([2]);
 
         // Admin & Manager Only Permissions
         $permission = Permission::create([
