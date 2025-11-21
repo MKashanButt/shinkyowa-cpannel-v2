@@ -73,7 +73,7 @@ class CustomerAccountController extends Controller
         $validated = $request->validated();
 
         $customerIdLatest = CustomerAccount::latest()->value('cid');
-        $customerId = $customerIdLatest ? $customerIdLatest : 1;
+        $customerId = $customerIdLatest ? $customerIdLatest + 1 : 1;
 
         CustomerAccount::create([
             'cid'         => $customerId,
