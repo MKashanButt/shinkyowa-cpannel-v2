@@ -61,6 +61,20 @@ class PermissionSeeder extends Seeder
 
         $permission->role()->attach([1, 2, 3]);
 
+        // Agent Only Permission
+        $permission = Permission::create([
+            'name' => 'view_own_customers',
+        ]);
+
+        $permission->role()->attach([3]);
+
+        // Manager Only Permission
+        $permission = Permission::create([
+            'name' => 'view_team_customers',
+        ]);
+
+        $permission->role()->attach([3]);
+
         // Admin & Manager Only Permissions
         $permission = Permission::create([
             'name' => 'add_shipment',
