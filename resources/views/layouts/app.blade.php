@@ -13,7 +13,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     @if (config('app.env') == 'production')
-        <link rel="stylesheet" href="{{ asset('build/assets/app-OAMpoZUc.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/assets/app-DAaPMldF.css') }}">
         <script src="{{ asset('build/assets/app-Bf4POITK.js') }}"></script>
     @else
         @vite(['resources/css/app.css', 'resources/js/app.js'])
