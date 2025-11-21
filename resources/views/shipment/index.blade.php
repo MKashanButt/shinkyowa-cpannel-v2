@@ -13,7 +13,7 @@
                 </a>
             @endif
         </x-header>
-        <div class="w-full h-[390px] overflow-y-scroll">
+        <div class="w-full h-[70vh] overflow-y-scroll">
             <table class="min-w-full divide-y divide-[#e3e3e0] mt-4">
                 <thead class="bg-gray-200 select-none">
                     <tr>

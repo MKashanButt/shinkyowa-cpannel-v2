@@ -11,7 +11,7 @@
                 <x-primary-button>Create</x-primary-button>
             </a>
         </x-header>
-        <div class="w-full h-[390px] overflow-y-scroll">
+        <div class="w-full h-[70vh] overflow-y-scroll">
             <table class="min-w-full divide-y divide-[#e3e3e0] mt-4">
                 <thead class="bg-gray-200 select-none">
                     <tr>
@@ -29,7 +29,8 @@
                     @foreach ($categories as $key => $data)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">
-                                {{ str_pad($sno + $key + 1, 2, '0', STR_PAD_LEFT) }}</td>
+                                {{ str_pad($sno + $key + 1, 2, '0', STR_PAD_LEFT) }}
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">{{ $data['name'] }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">{{ $data['stock_count'] }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">

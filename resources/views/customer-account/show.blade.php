@@ -8,7 +8,7 @@
             </a>
         </div>
 
-        <div class="w-full h-[390px] overflow-y-scroll bg-white rounded-lg shadow overflow-hidden">
+        <div class="w-full h-[70vh] overflow-y-scroll bg-white rounded-lg shadow overflow-hidden">
             <!-- Basic Information Section -->
             <div class="border-b border-gray-200 px-6 py-4">
                 <h2 class="w-full bg-gray-200/50 my-2 p-2 border-l-2 border-blue-900 text-lg font-medium">Basic
@@ -239,7 +239,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm">
                                         <span
                                             class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                                                                                                                    {{ $payment->status == 'approved' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
+                                                                                                                                            {{ $payment->status == 'approved' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
                                             {{ ucfirst($payment->status) }}
                                         </span>
                                     </td>

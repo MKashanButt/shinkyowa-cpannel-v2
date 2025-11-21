@@ -4,7 +4,7 @@
         <x-header>
             {{ __('Pending TTs') }}
         </x-header>
-        <div class="w-full h-[390px] overflow-y-scroll">
+        <div class="w-full h-[70vh] overflow-y-scroll">
             <table class="min-w-full divide-y divide-[#e3e3e0] mt-4">
                 <thead class="bg-gray-200 select-none">
                     <tr>
@@ -30,7 +30,8 @@
                     @foreach ($payments as $key => $data)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">
-                                {{ $data['stock'] ? 'SKI-0' . $data['stock']->sid : 'Not Set' }}</td>
+                                {{ $data['stock'] ? 'SKI-0' . $data['stock']->sid : 'Not Set' }}
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">{{ Str::limit($data['description'], 10) }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">{{ $data['payment_date'] }}</td>

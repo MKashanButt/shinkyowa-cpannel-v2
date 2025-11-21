@@ -59,8 +59,8 @@
                             <x-input-label for="payment_recieved_date"
                                 class="w-[32%] after:content-['*'] after:text-red-500">Payment Recieved
                                 Date</x-input-label>
-                            <x-text-input type="date" id="payment_recieved_date" name="payment_recieved_date"
-                                class="w-4/5" value="{{ old('payment_recieved_date') }}" />
+                            <x-text-input type="date" id="payment_recieved_date" name="payment_recieved_date" class="w-4/5"
+                                value="{{ old('payment_recieved_date') }}" />
                             <x-input-error :messages="$errors->get('payment_recieved_date')" class="mt-2" />
                         </div>
                     @endif
@@ -70,8 +70,8 @@
                         <x-select-box id="customer_account_id" name="customer_account_id" class="w-4/5">
                             <option value="" selected disabled>Select Customer Account</option>
                             @foreach ($customerAccounts as $key => $item)
-                                <option value="{{ $key }}"
-                                    {{ old('customer_account_id') == $key ? 'selected' : '' }}>{{ $item }}
+                                <option value="{{ $key }}" {{ old('customer_account_id') == $key ? 'selected' : '' }}>
+                                    {{ $item }}
                                 </option>
                             @endforeach
                         </x-select-box>

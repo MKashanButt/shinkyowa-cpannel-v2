@@ -8,7 +8,7 @@
             </a>
         </x-header>
         <form action="{{ route('stock.update', $stock) }}" method="POST"
-            class="w-full h-[390px] overflow-y-scroll py-4 px-2 grid grid-cols-1 gap-4" enctype="multipart/form-data">
+            class="w-full h-[70vh] overflow-y-scroll py-4 px-2 grid grid-cols-1 gap-4" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div>
@@ -53,8 +53,8 @@
                                             <input type="checkbox" name="remove_images[]" value="{{ $image }}"
                                                 class="hidden peer">
                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                class="h-4 w-4 text-red-500 peer-checked:block hidden"
-                                                viewBox="0 0 20 20" fill="currentColor">
+                                                class="h-4 w-4 text-red-500 peer-checked:block hidden" viewBox="0 0 20 20"
+                                                fill="currentColor">
                                                 <path fill-rule="evenodd"
                                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
                                                     clip-rule="evenodd" />
@@ -84,9 +84,9 @@
                         <x-select-box name="make_id" id="make_id" class="w-4/5" required>
                             <option value="">Select Make</option>
                             @foreach ($makes as $item)
-                                <option value="{{ $item['id'] }}"
-                                    {{ old('make_id', $stock['make_id']) == $item['id'] ? 'selected' : '' }}>
-                                    {{ $item['name'] }}</option>
+                                <option value="{{ $item['id'] }}" {{ old('make_id', $stock['make_id']) == $item['id'] ? 'selected' : '' }}>
+                                    {{ $item['name'] }}
+                                </option>
                             @endforeach
                         </x-select-box>
                         <x-input-error :messages="$errors->get('make_id')" class="mt-2" />
@@ -123,9 +123,9 @@
                         <x-select-box name="currency_id" id="currency_id" class="w-4/5" required>
                             <option value="">Select Currency</option>
                             @foreach ($currencies as $item)
-                                <option value="{{ $item['id'] }}"
-                                    {{ old('currency_id', $stock['currency_id']) == $item['id'] ? 'selected' : '' }}>
-                                    {{ $item['code'] }}</option>
+                                <option value="{{ $item['id'] }}" {{ old('currency_id', $stock['currency_id']) == $item['id'] ? 'selected' : '' }}>
+                                    {{ $item['code'] }}
+                                </option>
                             @endforeach
                             <x-input-error :messages="$errors->get('currency_id')" class="mt-2" />
                         </x-select-box>
@@ -136,9 +136,9 @@
                         <x-select-box name="country_id" id="country_id" class="w-4/5" required>
                             <option value="">Select Country</option>
                             @foreach ($countries as $item)
-                                <option value="{{ $item['id'] }}"
-                                    {{ old('country_id', $stock['country_id']) == $item['id'] ? 'selected' : '' }}>
-                                    {{ $item['name'] }}</option>
+                                <option value="{{ $item['id'] }}" {{ old('country_id', $stock['country_id']) == $item['id'] ? 'selected' : '' }}>
+                                    {{ $item['name'] }}
+                                </option>
                             @endforeach
                         </x-select-box>
                         <x-input-error :messages="$errors->get('country_id')" class="mt-2" />
@@ -160,12 +160,10 @@
                             class="w-[38%] after:content-['*'] after:text-red-500">Transmission</x-input-label>
                         <x-select-box name="transmission" id="transmission" class="w-4/5" required>
                             <option value="">Select Transmission</option>
-                            <option value="manual"
-                                {{ old('transmission', $stock['transmission']) == 'manual' ? 'selected' : '' }}>
+                            <option value="manual" {{ old('transmission', $stock['transmission']) == 'manual' ? 'selected' : '' }}>
                                 {{ __('Manual') }}
                             </option>
-                            <option value="automatic"
-                                {{ old('transmission', $stock['transmission']) == 'automatic' ? 'selected' : '' }}>
+                            <option value="automatic" {{ old('transmission', $stock['transmission']) == 'automatic' ? 'selected' : '' }}>
                                 {{ __('Automatic') }}
                             </option>
                         </x-select-box>
@@ -182,8 +180,7 @@
                             <option value="petrol" {{ old('fuel', $stock['fuel']) == 'petrol' ? 'selected' : '' }}>
                                 {{ __('Petrol') }}
                             </option>
-                            <option value="electric"
-                                {{ old('fuel', $stock['fuel']) == 'electric' ? 'selected' : '' }}>
+                            <option value="electric" {{ old('fuel', $stock['fuel']) == 'electric' ? 'selected' : '' }}>
                                 {{ __('Electric') }}
                             </option>
                             <option value="hybrid" {{ old('fuel', $stock['fuel']) == 'hybrid' ? 'selected' : '' }}>
@@ -205,9 +202,9 @@
                         <x-select-box name="category_id" id="category_id" class="w-4/5" required>
                             <option value="">Select Category</option>
                             @foreach ($categories as $item)
-                                <option value="{{ $item['id'] }}"
-                                    {{ old('category_id', $stock['category_id']) == $item['id'] ? 'selected' : '' }}>
-                                    {{ $item['name'] }}</option>
+                                <option value="{{ $item['id'] }}" {{ old('category_id', $stock['category_id']) == $item['id'] ? 'selected' : '' }}>
+                                    {{ $item['name'] }}
+                                </option>
                             @endforeach
                         </x-select-box>
                         <x-input-error :messages="$errors->get('category_id')" class="mt-2" />
@@ -218,9 +215,9 @@
                         <x-select-box name="body_type_id" id="body_type_id" class="w-4/5" required>
                             <option value="">Select Body Type</option>
                             @foreach ($bodyType as $item)
-                                <option value="{{ $item['id'] }}"
-                                    {{ old('body_type', $stock['body_type_id']) == $item['id'] ? 'selected' : '' }}>
-                                    {{ $item['name'] }}</option>
+                                <option value="{{ $item['id'] }}" {{ old('body_type', $stock['body_type_id']) == $item['id'] ? 'selected' : '' }}>
+                                    {{ $item['name'] }}
+                                </option>
                             @endforeach
                         </x-select-box>
                         <x-input-error :messages="$errors->get('currency_id')" class="mt-2" />
@@ -240,9 +237,9 @@
     @push('scripts')
         <script>
             // Add this script to your blade template
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 // Thumbnail preview
-                document.getElementById('thumbnail').addEventListener('change', function(e) {
+                document.getElementById('thumbnail').addEventListener('change', function (e) {
                     const preview = document.createElement('div');
                     preview.innerHTML = '<p class="text-xs text-gray-500 mt-2">New thumbnail preview:</p>' +
                         '<img class="w-24 h-24 object-cover border rounded mt-1" src="' +
@@ -251,7 +248,7 @@
                 });
 
                 // Gallery images preview
-                document.getElementById('images').addEventListener('change', function(e) {
+                document.getElementById('images').addEventListener('change', function (e) {
                     const previewContainer = document.createElement('div');
                     previewContainer.innerHTML =
                         '<p class="text-xs text-gray-500 mt-2">New images preview:</p>' +

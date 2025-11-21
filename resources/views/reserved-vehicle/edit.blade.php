@@ -8,7 +8,7 @@
             </a>
         </x-header>
         <form action="{{ route('reserved-vehicle.store') }}" method="POST"
-            class="w-full h-[390px] overflow-y-scroll py-4 px-2" enctype="multipart/form-data">
+            class="w-full h-[70vh] overflow-y-scroll py-4 px-2" enctype="multipart/form-data">
             @csrf
             <div>
                 <h2 class="w-full bg-gray-200/50 my-2 p-2 border-l-2 border-blue-900">Info</h2>
@@ -19,9 +19,9 @@
                         <x-select-box name="sid" id="sid" class="w-4/5" required>
                             <option value="">Select Stocks</option>
                             @foreach ($stocks as $key => $item)
-                                <option value="{{ $key }}"
-                                    {{ old('sid', $reserved['sid']) == $key ? 'selected' : '' }}>
-                                    {{ $item }}</option>
+                                <option value="{{ $key }}" {{ old('sid', $reserved['sid']) == $key ? 'selected' : '' }}>
+                                    {{ $item }}
+                                </option>
                             @endforeach
                         </x-select-box>
                         <x-input-error :messages="$errors->get('sid')" class="mt-2" />
@@ -32,9 +32,9 @@
                         <x-select-box name="customer_account_id" id="customer_account_id" class="w-4/5" required>
                             <option value="">Select Customer Account</option>
                             @foreach ($customerAccounts as $key => $item)
-                                <option value="{{ $key }}"
-                                    {{ old('customer_account_id', $reserved['customer_account_id']) == $key ? 'selected' : '' }}>
-                                    {{ $item }}</option>
+                                <option value="{{ $key }}" {{ old('customer_account_id', $reserved['customer_account_id']) == $key ? 'selected' : '' }}>
+                                    {{ $item }}
+                                </option>
                             @endforeach
                         </x-select-box>
                         <x-input-error :messages="$errors->get('customer_account_id')" class="mt-2" />

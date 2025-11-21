@@ -8,7 +8,7 @@
             </a>
         </div>
         <form action="{{ route('customer-account.store') }}" method="POST"
-            class="w-full h-[390px] overflow-y-scroll py-4 px-2 grid grid-cols-1 gap-4">
+            class="w-full h-[70vh] overflow-y-scroll py-4 px-2 grid grid-cols-1 gap-4">
             @csrf
             <div>
                 <h2 class="w-full bg-gray-200/50 my-2 p-2 border-l-2 border-blue-900">Basic Info</h2>

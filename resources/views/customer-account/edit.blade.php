@@ -6,7 +6,7 @@
             <x-primary-button>Go Back</x-primary-button>
         </div>
         <form action="{{ route('customer-account.update', $customerAccount->id) }}" method="POST"
-            class="w-full h-[390px] overflow-y-scroll py-4 px-2 grid grid-cols-1 gap-4">
+            class="w-full h-[70vh] overflow-y-scroll py-4 px-2 grid grid-cols-1 gap-4">
             @csrf
             @method('PUT')
             <div>

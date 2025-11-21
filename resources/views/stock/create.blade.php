@@ -8,7 +8,7 @@
             </a>
         </x-header>
         <form action="{{ route('stock.store') }}" method="POST"
-            class="w-full h-[390px] overflow-y-scroll py-4 px-2 grid grid-cols-1 gap-4" enctype="multipart/form-data">
+            class="w-full h-[70vh] overflow-y-scroll py-4 px-2 grid grid-cols-1 gap-4" enctype="multipart/form-data">
             @csrf
             <div>
                 <h2 class="w-full bg-gray-200/50 my-2 p-2 border-l-2 border-blue-900">Images</h2>
@@ -192,28 +192,33 @@
                             value="{{ old('features') }}" /> --}}
                         <div class="w-[91%] flex flex-wrap gap-2">
                             <div class="flex gap-2 items-center">
-                                <x-text-input type="checkbox" name="features[]" value="cd_player" id="cd_player" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="cd_player" id="cd_player"
+                                    class="w-6 h-6" />
                                 <label for="cd_player">CD Player</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="sun_roof" id="sun_roof" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="sun_roof" id="sun_roof"
+                                    class="w-6 h-6" />
                                 <label for="sun_roof">Sun Roof</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="leather_seat" id="leather_seat" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="leather_seat" id="leather_seat"
+                                    class="w-6 h-6" />
                                 <label for="leather_seat">Leather Seat</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="alloy_wheels" id="alloy_wheels" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="alloy_wheels" id="alloy_wheels"
+                                    class="w-6 h-6" />
                                 <label for="alloy_wheels">Alloy Wheels</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="power_steering" id="power_steering"
-                                    class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="power_steering"
+                                    id="power_steering" class="w-6 h-6" />
                                 <label for="power_steering">Power Steering</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="power_window" id="power_window" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="power_window" id="power_window"
+                                    class="w-6 h-6" />
                                 <label for="power_window">Power Window</label>
                             </div>
                             <div>
@@ -225,15 +230,18 @@
                                 <label for="abs">ABS</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="airbag" id="airbag" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="airbag" id="airbag"
+                                    class="w-6 h-6" />
                                 <label for="airbag">Airbag</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="radio" id="radio" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="radio" id="radio"
+                                    class="w-6 h-6" />
                                 <label for="radio">Radio</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="cd_changer" id="cd_changer" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="cd_changer" id="cd_changer"
+                                    class="w-6 h-6" />
                                 <label for="cd_changer">CD Changer</label>
                             </div>
                             <div>
@@ -245,52 +253,63 @@
                                 <label for="tv">TV</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="power_seat" id="power_seat" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="power_seat" id="power_seat"
+                                    class="w-6 h-6" />
                                 <label for="power_seat">Power Seat</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="back_tire" id="back_tire" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="back_tire" id="back_tire"
+                                    class="w-6 h-6" />
                                 <label for="back_tire">Back Tire</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="grill_guard" id="grill_guard" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="grill_guard" id="grill_guard"
+                                    class="w-6 h-6" />
                                 <label for="grill_guard">Grill Guard</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="rear_spoiler" id="rear_spoiler" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="rear_spoiler" id="rear_spoiler"
+                                    class="w-6 h-6" />
                                 <label for="rear_spoiler">Rear Spoiler</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="central_locking" id="central_locking"
-                                    class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="central_locking"
+                                    id="central_locking" class="w-6 h-6" />
                                 <label for="central_locking">Central Locking</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="jack" id="jack" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="jack" id="jack"
+                                    class="w-6 h-6" />
                                 <label for="jack">Jack</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="spare_tire" id="spare_tire" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="spare_tire" id="spare_tire"
+                                    class="w-6 h-6" />
                                 <label for="spare_tire">Spare Tire</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="wheel_spanner" id="wheel_spanner" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="wheel_spanner" id="wheel_spanner"
+                                    class="w-6 h-6" />
                                 <label for="wheel_spanner">Wheel Spanner</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="fog_lights" id="fog_lights" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="fog_lights" id="fog_lights"
+                                    class="w-6 h-6" />
                                 <label for="fog_lights">Fog Lights</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="back_camera" id="back_camera" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="back_camera" id="back_camera"
+                                    class="w-6 h-6" />
                                 <label for="back_camera">Back Camera</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="push_start" id="push_start" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="push_start" id="push_start"
+                                    class="w-6 h-6" />
                                 <label for="push_start">Push Start</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="keyless_entry" id="keyless_entry" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="keyless_entry" id="keyless_entry"
+                                    class="w-6 h-6" />
                                 <label for="keyless_entry">Keyless Entry</label>
                             </div>
                             <div>
@@ -298,42 +317,48 @@
                                 <label for="esc">ESC</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="360_degree_camera" id="360_degree_camera"
-                                    class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="360_degree_camera"
+                                    id="360_degree_camera" class="w-6 h-6" />
                                 <label for="360_degree_camera">360 Degree Camera</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="body_kit" id="body_kit" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="body_kit" id="body_kit"
+                                    class="w-6 h-6" />
                                 <label for="body_kit">Body Kit</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="side_airbag" id="side_airbag" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="side_airbag" id="side_airbag"
+                                    class="w-6 h-6" />
                                 <label for="side_airbag">Side Airbag</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="power_mirror" id="power_mirror" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="power_mirror" id="power_mirror"
+                                    class="w-6 h-6" />
                                 <label for="power_mirror">Power Mirror</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="side_skirts" id="side_skirts" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="side_skirts" id="side_skirts"
+                                    class="w-6 h-6" />
                                 <label for="side_skirts">Side Skirts</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="front_lip_spoiler" id="front_lip_spoiler"
-                                    class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="front_lip_spoiler"
+                                    id="front_lip_spoiler" class="w-6 h-6" />
                                 <label for="front_lip_spoiler">Front Lip Spoiler</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="navigation" id="navigation" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="navigation" id="navigation"
+                                    class="w-6 h-6" />
                                 <label for="navigation">Navigation</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="turbo" id="turbo" class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="turbo" id="turbo"
+                                    class="w-6 h-6" />
                                 <label for="turbo">Turbo</label>
                             </div>
                             <div>
-                                <x-text-input type="checkbox" name="features[]" value="power_slide_door" id="power_slide_door"
-                                    class="w-6 h-6" />
+                                <x-text-input type="checkbox" name="features[]" value="power_slide_door"
+                                    id="power_slide_door" class="w-6 h-6" />
                                 <label for="power_slide_door">Power Slide Door</label>
                             </div>
                         </div>

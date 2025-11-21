@@ -8,7 +8,7 @@
             </a>
         </x-header>
         <form action="{{ route('payment.update', $payment) }}" method="POST"
-            class="w-full h-[390px] overflow-y-scroll py-4 px-2 grid grid-cols-1 gap-4" enctype="multipart/form-data">
+            class="w-full h-[70vh] overflow-y-scroll py-4 px-2 grid grid-cols-1 gap-4" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div>
@@ -20,8 +20,7 @@
                         <x-select-box id="stock_id" name="stock_id" class="w-4/5">
                             <option value="" selected disabled>Select Stock Id</option>
                             @foreach ($stocks as $key => $item)
-                                <option value="{{ $key }}"
-                                    {{ old('stock_id', $payment->stock_id) == $key ? 'selected' : '' }}>
+                                <option value="{{ $key }}" {{ old('stock_id', $payment->stock_id) == $key ? 'selected' : '' }}>
                                     {{ 'SKI-0' . $item }}
                                 </option>
                             @endforeach
@@ -61,8 +60,7 @@
                             <x-input-label for="payment_recieved_date"
                                 class="w-[32%] after:content-['*'] after:text-red-500">Payment Recieved
                                 Date</x-input-label>
-                            <x-text-input type="date" id="payment_recieved_date" name="payment_recieved_date"
-                                class="w-4/5"
+                            <x-text-input type="date" id="payment_recieved_date" name="payment_recieved_date" class="w-4/5"
                                 value="{{ old('payment_recieved_date', $payment->payment_recieved_date) }}" />
                             <x-input-error :messages="$errors->get('payment_recieved_date')" class="mt-2" />
                         </div>
@@ -73,8 +71,7 @@
                         <x-select-box id="customer_account_id" name="customer_account_id" class="w-4/5">
                             <option value="" selected disabled>Select Customer Account</option>
                             @foreach ($customerAccounts as $key => $item)
-                                <option value="{{ $key }}"
-                                    {{ old('customer_account_id', $payment->customer_account_id) == $key ? 'selected' : '' }}>
+                                <option value="{{ $key }}" {{ old('customer_account_id', $payment->customer_account_id) == $key ? 'selected' : '' }}>
                                     {{ $item }}
                                 </option>
                             @endforeach
@@ -83,7 +80,8 @@
                     </div>
                     <div class="flex items-center gap-2">
                         <x-input-label for="file" class="w-[32%]">File</x-input-label>
-                        <div x-data="{ fileName: '', previewUrl: '{{ $payment->file ? asset('storage/' . $payment->file) : '' }}' }" class="w-4/5">
+                        <div x-data="{ fileName: '', previewUrl: '{{ $payment->file ? asset('storage/' . $payment->file) : '' }}' }"
+                            class="w-4/5">
                             <!-- Preview existing file -->
                             <div class="mb-3" x-show="previewUrl">
                                 @if ($payment->file)
@@ -101,8 +99,7 @@
                             <!-- File Input -->
                             <input
                                 class="block w-full text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
-                                id="file" type="file" name="file" x-ref="fileInput"
-                                @change="
+                                id="file" type="file" name="file" x-ref="fileInput" @change="
                                     fileName = $event.target.files[0]?.name;
                                     if ($event.target.files[0]) {
                                         previewUrl = URL.createObjectURL($event.target.files[0]);
@@ -119,10 +116,8 @@
                             class="w-[32%] after:content-['*'] after:text-red-500">Status</x-input-label>
                         <x-select-box id="status" name="status" class="w-4/5">
                             <option value="" selected disabled>Select Status</option>
-                            <option value="approved"
-                                {{ old('status', $payment->status) == 'approved' ? 'selected' : '' }}>Approved</option>
-                            <option value="not approved"
-                                {{ old('status', $payment->status) == 'not approved' ? 'selected' : '' }}>Not Approved
+                            <option value="approved" {{ old('status', $payment->status) == 'approved' ? 'selected' : '' }}>Approved</option>
+                            <option value="not approved" {{ old('status', $payment->status) == 'not approved' ? 'selected' : '' }}>Not Approved
                             </option>
                         </x-select-box>
                         <x-input-error :messages="$errors->get('status')" class="mt-2" />
