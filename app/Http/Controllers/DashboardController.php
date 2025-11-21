@@ -22,17 +22,45 @@ class DashboardController extends Controller
                 'deposit' => Payment::selectRaw('COALESCE(SUM(amount), 0)')
                     ->whereColumn('customer_account_id', 'customer_accounts.id')
             ])
+            ->when(Auth::user()->hasPermission('view_team_customers'), function ($query) {
+                $managerAgentIds = User::where('manager_id', Auth::id())
+                    ->where('role', 'agent')
+                    ->pluck('id');
+                $query->whereIn('agent_id', $managerAgentIds);
+            })
+            ->when(Auth::user()->hasPermission('view_own_customers'), function ($query) {
+                $query->where('agent_id', Auth::id());
+            })
             ->orderBy('id', 'DESC')
-            ->limit(4)
+            ->limit(10)
             ->get();
 
         $payments = Payment::with('customerAccount')
+            ->when(Auth::user()->hasPermission('view_team_customers'), function ($query) {
+                $managerAgentIds = User::where('manager_id', Auth::id())
+                    ->where('role', 'agent')
+                    ->pluck('id');
+                $query->whereIn('agent_id', $managerAgentIds);
+            })
+            ->when(Auth::user()->hasPermission('view_own_customers'), function ($query) {
+                $query->where('agent_id', Auth::id());
+            })
             ->orderBy('id', 'DESC')
             ->limit(4)
             ->get();
 
         $pendingTT = Payment::with('customerAccount')
-            ->where('status', 'not approved')
+            ->when(Auth::user()->hasPermission('view_team_customers'), function ($query) {
+                $managerAgentIds = User::where('manager_id', Auth::id())
+                    ->where('role', 'agent')
+                    ->where('status', 'not approved')
+                    ->pluck('id');
+                $query->whereIn('agent_id', $managerAgentIds);
+            })
+            ->when(Auth::user()->hasPermission('view_own_customers'), function ($query) {
+                $query->where('agent_id', Auth::id())
+                    ->where('status', 'not approved');
+            })
             ->orderBy('id', 'DESC')
             ->limit(4)
             ->get();
