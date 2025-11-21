@@ -28,7 +28,7 @@ class UserController extends Controller
 
     public function create()
     {
-        $roles = Auth::hasRole('admin') ? Role::pluck('name', 'id') : Role::whereNot('name', 'admin')->pluck('name', 'id');
+        $roles = Auth::user()->hasRole('admin') ? Role::pluck('name', 'id') : Role::whereNot('name', 'admin')->pluck('name', 'id');
         $managers = User::whereHas('role', function ($q) {
             $q->where('name', 'manager');
         })->pluck('name', 'id');
