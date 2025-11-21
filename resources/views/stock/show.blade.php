@@ -11,7 +11,7 @@
             </a>
         </x-header>
 
-        <div class="w-full h-[70vh] bg-white overflow-y-scroll rounded-lg shadow-md p-6 mb-6">
+        <div class="w-full h-[40vh] bg-white overflow-y-scroll rounded-lg shadow-md p-6 mb-6">
             <!-- Vehicle Images Gallery -->
             <div class="mb-8">
                 <h2 class="text-lg font-semibold mb-4 border-b pb-2">Vehicle Images</h2>
