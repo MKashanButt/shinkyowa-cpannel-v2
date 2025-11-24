@@ -54,7 +54,7 @@ class CustomerAccountController extends Controller
             $q->where('name', 'managers');
         })->pluck('name', 'id');
 
-        $overallUsers = $managerUsers->merge($agentUsers);
+        $overallUsers = $managerUsers->union($agentUsers);
 
         $currencies = Currency::pluck('code', 'id');
         $customerIdLatest = CustomerAccount::latest()->value('cid');
