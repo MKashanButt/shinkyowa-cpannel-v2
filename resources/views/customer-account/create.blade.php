@@ -1,5 +1,4 @@
 <x-app-layout>
-    @dd($overallUsers);
     <section>
         <x-breadcrumbs :page="'Customer Account'" :subpage="'Add'" />
         <div class="flex px-2 py-4 items-center justify-between">
