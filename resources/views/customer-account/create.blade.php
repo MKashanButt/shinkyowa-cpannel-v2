@@ -17,7 +17,7 @@
                         <x-input-label for="cid"
                             class="w-[32%] after:content-['*'] after:text-red-500">Id</x-input-label>
                         <x-text-input type="text" id="cid" name="cid" readonly class="w-4/5"
-                            value="{{ 'SKC-0' . $customerId }}" />
+                            value="{{ 'SKC-' . str_pad($customerId, 2, '0', STR_PAD_LEFT) }}" />
                         <x-input-error :messages="$errors->get('cid')" class="mt-2" />
                     </div>
                     <div class="flex items-center gap-2">
