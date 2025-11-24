@@ -25,7 +25,7 @@
                             Deposit</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-[#706f6c] uppercase tracking-wider">
                             Remaining</th>
-                        @if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('manager'))
+                        @if (Auth::user()->hasPermission('can_see_agent_name'))
                             <th class="px-6 py-3 text-left text-xs font-medium text-[#706f6c] uppercase tracking-wider">
                                 Agent</th>
                         @endif
