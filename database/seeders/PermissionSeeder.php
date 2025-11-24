@@ -112,6 +112,12 @@ class PermissionSeeder extends Seeder
 
         $permission->role()->attach([1, 2]);
 
+        $permission = Permission::create([
+            'name' => 'can_see_agent_name',
+        ]);
+
+        $permission->role()->attach([1, 2]);
+
         // Manager Only Permissions
         $permission = Permission::create([
             'name' => 'view_team_members',
