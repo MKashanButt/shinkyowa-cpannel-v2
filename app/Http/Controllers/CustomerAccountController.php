@@ -110,7 +110,7 @@ class CustomerAccountController extends Controller
     {
         $id = $customerAccount->id;
         $customerAccount->load([
-            'currency:id,name,symbol,code',
+            'currency:id,symbol,code',
             'country:id,name',
             'agent:id,name',
             'stock' => function ($query) use ($id) {
