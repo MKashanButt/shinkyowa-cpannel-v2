@@ -20,9 +20,20 @@ use App\Http\Controllers\StockRenderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('authKey')->group(function () {
-    Route::get('/api/stock', [StockRenderController::class, 'index']);
-});
+Route::middleware('authKey')
+    ->prefix('/api/stock/')
+    ->group(function () {
+        Route::get('all', [StockRenderController::class, 'index']);
+        Route::get('byCategory', [StockRenderController::class, 'byCategory']);
+        Route::get('single/{id}', [StockRenderController::class, 'single']);
+        Route::get('totalStock', [StockRenderController::class, 'totalStock']);
+        Route::get('makes', [StockRenderController::class, 'makes']);
+        Route::get('makes/count', [StockRenderController::class, 'makesCount']);
+        Route::get('country/count', [StockRenderController::class, 'countryCount']);
+        Route::get('country/count', [StockRenderController::class, 'countryCount']);
+        Route::get('vehicleOfTheDay', [StockRenderController::class, 'vehicleOfTheDay']);
+        Route::get('filterOptions', [StockRenderController::class, 'filterOptions']);
+    });
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])

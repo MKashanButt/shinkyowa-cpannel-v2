@@ -122,6 +122,4 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
-
-    'api_auth_key' => env('API_AUTH_KEY', 'HaiderFelix'),
 ];

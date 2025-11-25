@@ -15,9 +15,10 @@ class AuthKeyCheckerMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $expectedKey = config('app.api_auth_key');
+        $expectedKey = config('services.api.key');
 
-        $providedKey = $request->input('auth_key');
+        $providedKey = $request->header('X-API-KEY')
+            ?? $request->input('auth_key');
 
         if (!$providedKey || $providedKey !== $expectedKey) {
             return response()->json([
