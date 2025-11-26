@@ -1,4 +1,5 @@
-<nav x-data="{ open: false }" class="w-64 h-screen bg-blue-900 text-white text-xs overflow-y-auto">
+<nav x-data="{ open: false }"
+    class="w-64 h-screen bg-blue-900 text-white text-xs overflow-y-auto {{ Auth::user()->hasRole('customer') ? 'hidden' : '' }}">
     <!-- Logo -->
     <div class="h-16 flex items-center px-4 border-b-2 border-white">
         <a href="{{ route('dashboard') }}" class="flex items-center">
