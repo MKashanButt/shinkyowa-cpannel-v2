@@ -163,7 +163,6 @@ class StockController extends Controller
 
         $stocks = Stock::with(['make', 'currency', 'customerAccount', 'agent'])
             ->where('sid', 'LIKE', "%{$search}%")
-            ->orWhere('name', 'LIKE', "%{$search}%")
             ->orWhereHas('make', function ($query) use ($search) {
                 $query->where('name', 'LIKE', "%{$search}%");
             })
