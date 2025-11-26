@@ -260,7 +260,7 @@ class CustomerAccountController extends Controller
         });
 
         Notification::create([
-            'message' => 'Customer Account deleted: ' . $validated['name'] . ' by ' . Auth::user()->name,
+            'message' => 'Customer Account deleted: ' . $customerAccount->name . ' by ' . Auth::user()->name,
             'type'    => 'danger',
         ]);
 
