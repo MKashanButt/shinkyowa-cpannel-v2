@@ -11,7 +11,7 @@
         </x-header>
         <div class="float-right">
             <form action="{{ route('stock.search') }}" method="post"
-                class="flex items-center gap-2 rounded-md bg-white border border-gray-300">
+                class="flex items-center gap-2 rounded-md bg-white border border-gray-300 mb-4">
                 @csrf
                 <input type="search" name="search" id="search"
                     class="rounded-md text-xs uppercase border border-transparent focus:border-blue-900 focus:ring-blue-900"
