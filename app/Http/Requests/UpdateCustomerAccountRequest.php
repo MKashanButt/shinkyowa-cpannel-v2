@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -33,7 +34,9 @@ class UpdateCustomerAccountRequest extends FormRequest
                 'email',
                 'max:150',
                 Rule::unique('customer_accounts')->ignore($customerAccountId),
-                Rule::unique('users', 'email')->where('role', 'customer')
+                Rule::unique('users', 'email')
+                    ->where(fn($q) => $q->where('role_id', Role::where('name', 'customer')
+                        ->value('id')))
                     ->ignore($this->user()->id)
             ],
             'phone'       => ['required', 'string', 'max:15', 'regex:/^[0-9+\-\s()]+$/'],
