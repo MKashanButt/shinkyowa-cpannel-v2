@@ -168,9 +168,10 @@ class StockController extends Controller
                 $query->where('name', 'LIKE', "%{$search}%");
             })
             ->orWhere('model', 'LIKE', "%{$search}%")
+            ->orWhere('chassis', 'LIKE', "%{$search}%")
             ->paginate(8);
 
-        return view('stock.index', compact('stocks'));
+        return view('stock.index', compact('stocks', 'search'));
     }
 
     public function destroy($id)
