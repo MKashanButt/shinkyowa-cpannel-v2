@@ -60,12 +60,9 @@ class ReservedVehicleController extends Controller
     public function store(StoreReservedVehicleRequest $request)
     {
         $validated = $request->validated();
-        $stock = Stock::findOrFail($validated['sid'])
-            ->first()
-            ->pluck('id');
 
         try {
-            Stock::where('id', $stock)
+            Stock::where('sid', $validated['sid'])
                 ->update([
                     'customer_account_id' => $validated['customer_account_id'],
                 ]);
