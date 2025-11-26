@@ -44,7 +44,7 @@ return new class extends Migration
                 ->onDelete('set null');
             $table->enum(
                 'fuel',
-                ['diesel', 'petrol', 'electric', 'hybrid']
+                ['diesel', 'petrol', 'electric', 'hybrid', 'gasoline']
             );
             $table->foreignId('category_id')
                 ->nullable()
