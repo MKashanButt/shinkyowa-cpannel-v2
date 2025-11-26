@@ -150,9 +150,15 @@ class CustomerAccountController extends Controller
     {
         $countries = Country::pluck('name', 'id');
 
-        $agentUsers = User::where('role', 'agent')->pluck('name', 'id');
-        $managerUsers = User::where('role', 'managers')->pluck('name', 'id');
-        $overallUsers = $managerUsers->merge($agentUsers);
+        $agentUsers = User::whereHas('role', function ($q) {
+            $q->where('name', 'agent');
+        })->pluck('name', 'id');
+
+        $managerUsers = User::whereHas('role', function ($q) {
+            $q->where('name', 'managers');
+        })->pluck('name', 'id');
+
+        $overallUsers = $managerUsers->union($agentUsers);
 
         $currencies = Currency::pluck('code', 'id');
 
