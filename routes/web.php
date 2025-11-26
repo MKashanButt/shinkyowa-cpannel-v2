@@ -35,7 +35,7 @@ Route::middleware('authKey')
         Route::get('filterOptions', [StockRenderController::class, 'filterOptions']);
     });
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'customerRoleCheck'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])
         ->name('dashboard');
 
