@@ -3,7 +3,7 @@
         <x-breadcrumbs :page="'Customer Account'" :subpage="'Details'" />
         <div class="flex px-2 py-4 items-center justify-between">
             <h1 class="text-xl">Customer Account Details</h1>
-            @if (Auth::user()->hasRole('customer'))
+            @if (!Auth::check() && Auth::user()->hasRole('customer'))
                 <a href="{{ route('customer-account.index') }}">
                     <x-primary-button>Back to List</x-primary-button>
                 </a>
@@ -241,7 +241,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm">
                                         <span
                                             class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                                                                                                                                                                        {{ $payment->status == 'approved' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
+                                                                                                                                                                                                                                            {{ $payment->status == 'approved' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
                                             {{ ucfirst($payment->status) }}
                                         </span>
                                     </td>
