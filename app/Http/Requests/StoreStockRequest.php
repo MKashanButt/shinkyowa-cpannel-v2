@@ -48,7 +48,7 @@ class StoreStockRequest extends FormRequest
             ],
             'fuel' => [
                 'required',
-                Rule::in(['diesel', 'petrol', 'electric', 'hybrid'])
+                Rule::in(['diesel', 'petrol', 'electric', 'hybrid', 'gasoline'])
             ],
             'doors' => 'required|integer|min:1|max:10',
             'category_id' => 'required|exists:categories,id',
