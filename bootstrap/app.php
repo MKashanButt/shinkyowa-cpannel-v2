@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\AuthKeyCheckerMiddleware;
+use App\Http\Middleware\CheckCustomerRoleMiddleware;
 use App\Http\Middleware\PermissionMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -16,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             "permission" => PermissionMiddleware::class,
             "authKey" => AuthKeyCheckerMiddleware::class,
+            "customerRoleCheck" => CheckCustomerRoleMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
