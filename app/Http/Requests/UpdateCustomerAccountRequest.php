@@ -37,7 +37,7 @@ class UpdateCustomerAccountRequest extends FormRequest
                 Rule::unique('users', 'email')
                     ->where(fn($q) => $q->where('role_id', Role::where('name', 'customer')
                         ->value('id')))
-                    ->ignore($this->user()->id)
+                    ->ignore($customerAccountId)
             ],
             'phone'       => ['required', 'string', 'max:15', 'regex:/^[0-9+\-\s()]+$/'],
             'whatsapp'    => ['required', 'string', 'max:15', 'regex:/^[0-9+\-\s()]+$/'],
