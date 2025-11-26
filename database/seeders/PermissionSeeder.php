@@ -118,6 +118,12 @@ class PermissionSeeder extends Seeder
 
         $permission->role()->attach([1, 2]);
 
+        $permission = Permission::create([
+            'name' => 'can_delete_customer',
+        ]);
+
+        $permission->role()->attach([1, 2]);
+
         // Manager Only Permissions
         $permission = Permission::create([
             'name' => 'view_team_members',
