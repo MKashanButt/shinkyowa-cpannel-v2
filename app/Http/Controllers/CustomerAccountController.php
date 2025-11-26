@@ -131,7 +131,7 @@ class CustomerAccountController extends Controller
                         'in_yen',
                         'payment_recieved_date',
                         'status',
-                        'file_path',
+                        'file',
                     ]);
             }
         ]);
