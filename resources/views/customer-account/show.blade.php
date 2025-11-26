@@ -80,11 +80,11 @@
                     </div>
                     <div class="flex items-start gap-2 w-[32.5%]">
                         <dt class="w-[32%] font-semibold">Created At</dt>
-                        <dd class="w-4/5 text-gray-700">{{ $customerAccount->created_at->format('M d, Y H:i') }}</dd>
+                        <dd class="w-4/5 text-gray-700">{{ $customerAccount->created_at?->format('M d, Y H:i') }}</dd>
                     </div>
                     <div class="flex items-start gap-2 w-[32.5%]">
                         <dt class="w-[32%] font-semibold">Last Updated</dt>
-                        <dd class="w-4/5 text-gray-700">{{ $customerAccount->updated_at->format('M d, Y H:i') }}</dd>
+                        <dd class="w-4/5 text-gray-700">{{ $customerAccount->updated_at?->format('M d, Y H:i') }}</dd>
                     </div>
                 </dl>
             </div>
@@ -239,7 +239,7 @@
                                     <td class="px-6 py-4 whitespace-nowrap text-sm">
                                         <span
                                             class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                                                                                                                                            {{ $payment->status == 'approved' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
+                                                                                                                                                                            {{ $payment->status == 'approved' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
                                             {{ ucfirst($payment->status) }}
                                         </span>
                                     </td>
