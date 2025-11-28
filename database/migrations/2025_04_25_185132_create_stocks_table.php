@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('model', 100);
             $table->string('year', 4);
             $table->integer('fob');
+            $table->integer('cnf')
+                ->nullable();
             $table->foreignId('currency_id')
                 ->default(1)
                 ->nullable()
