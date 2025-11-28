@@ -27,6 +27,13 @@
                         <x-input-error :messages="$errors->get('sid')" class="mt-2" />
                     </div>
                     <div class="flex items-center gap-2">
+                        <x-input-label for="cnf"
+                            class="w-[32%] after:content-['*'] after:text-red-500">CNF</x-input-label>
+                        <x-text-input type="number" id="cnf" name="cnf" class="w-4/5"
+                            value="{{ old('cnf', $reserved['cnf']) }}" />
+                        <x-input-error :messages="$errors->get('cnf')" class="mt-2" />
+                    </div>
+                    <div class="flex items-center gap-2">
                         <x-input-label for="customer_account_id"
                             class="w-[32%] after:content-['*'] after:text-red-500">Customer Account</x-input-label>
                         <x-select-box name="customer_account_id" id="customer_account_id" class="w-4/5" required>
