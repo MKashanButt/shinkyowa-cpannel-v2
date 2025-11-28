@@ -128,7 +128,7 @@ class ReservedVehicleController extends Controller
     {
         try {
             Stock::where('id', $reserved)
-                ->update(['customer_account_id' => null]);
+                ->update(['customer_account_id' => null, 'cnf' => 0]);
 
             return redirect()->route('reserved-vehicle.index')
                 ->with('success', 'Vehicle reservation cancelled successfully.');
