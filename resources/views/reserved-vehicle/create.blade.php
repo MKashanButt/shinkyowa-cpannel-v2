@@ -26,7 +26,7 @@
                         </x-select-box>
                         <x-input-error :messages="$errors->get('sid')" class="mt-2" />
                     </div>
-                    <div>
+                    <div class="flex items-center gap-2">
                         <x-input-label for="cnf"
                             class="w-[32%] after:content-['*'] after:text-red-500">CNF</x-input-label>
                         <x-text-input type="number" id="cnf" name="cnf" class="w-4/5" value="{{ old('cnf') }}" />
