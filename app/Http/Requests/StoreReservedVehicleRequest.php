@@ -25,6 +25,7 @@ class StoreReservedVehicleRequest extends FormRequest
     {
         return [
             'sid' => ['required', 'exists:stocks,id'],
+            'cnf' => ['required', 'numeric', 'min:0'],
             'customer_account_id' => ['required', 'exists:customer_accounts,id'],
         ];
     }
@@ -34,6 +35,11 @@ class StoreReservedVehicleRequest extends FormRequest
         return [
             'sid.required' => 'The Stock ID is required.',
             'sid.exists' => 'The selected stock does not exist.',
+
+            'cnf.required' => 'CNF amount is required.',
+            'cnf.numeric' => 'CNF amount should be valid numbers.',
+            'cnf.min' => 'CNF amount should be more than zero.',
+
             'customer_account_id.required' => 'A Customer Account is required.',
             'customer_account_id.exists' => 'The provided customer account does not exist.',
         ];
