@@ -24,7 +24,7 @@
                         <th class="px-6 py-3 text-left text-xs font-medium text-[#706f6c] uppercase tracking-wider">
                             Year</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-[#706f6c] uppercase tracking-wider">
-                            Price</th>
+                            CNF</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-[#706f6c] uppercase tracking-wider">
                             Customer</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-[#706f6c] uppercase tracking-wider">
@@ -47,7 +47,7 @@
                             <td class="px-6 py-4 whitespace-nowrap text-xs">{{ $data['model'] }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">{{ $data['year'] }}</td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">
-                                {{ $data['currency']->symbol . $data['fob'] }}
+                                {{ $data['currency']->symbol . $data['cnf'] }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-xs">
                                 {{ $data['customerAccount']->name }}
