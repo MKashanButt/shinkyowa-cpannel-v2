@@ -52,7 +52,7 @@ class ReservedVehicleController extends Controller
                     $q->where('agent_id', Auth::id());
                 });
             })
-            ->pluck('name', 'id');
+            ->get(['cnf', 'name', 'id']);
 
         return view('reserved-vehicle.create', compact('stocks', 'customerAccounts'));
     }
@@ -65,6 +65,7 @@ class ReservedVehicleController extends Controller
             Stock::where('sid', $validated['sid'])
                 ->update([
                     'customer_account_id' => $validated['customer_account_id'],
+                    'cnf' => $validated['cnf']
                 ]);
 
             return redirect()->route('reserved-vehicle.index')
@@ -94,7 +95,7 @@ class ReservedVehicleController extends Controller
                     $q->where('agent_id', Auth::id());
                 });
             })
-            ->pluck('name', 'id');
+            ->get(['cnf', 'name', 'id']);
 
         return view('reserved-vehicle.edit', compact(
             'reserved',
@@ -111,6 +112,7 @@ class ReservedVehicleController extends Controller
             Stock::where('id', $reserved->id)
                 ->update([
                     'customer_account_id' => $validated['customer_account_id'],
+                    'cnf' => $validated['cnf']
                 ]);
 
             return redirect()->route('reserved-vehicle.index')
