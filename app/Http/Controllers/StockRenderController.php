@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\FilterByMakeApiRequest;
 use App\Models\BodyType;
 use App\Models\Country;
 use App\Models\Make;
@@ -26,6 +27,7 @@ class StockRenderController extends Controller
 
         return response()->json($stocks);
     }
+
     public function single($id)
     {
         $stock = Stock::with('make', 'bodyType', 'category', 'currency', 'country')->findOrFail($id);
@@ -71,6 +73,7 @@ class StockRenderController extends Controller
 
         return response()->json($mergedCount);
     }
+
     public function countryCount()
     {
         $country = Country::withCount('stock')
@@ -104,5 +107,14 @@ class StockRenderController extends Controller
         ];
 
         return response()->json($filterOptions);
+    }
+
+    public function filterByMake($make)
+    {
+        $stocks = Stock::whereHas('make', function ($r) use ($make) {
+            $r->where('name', $make);
+        })->paginate(6);
+
+        return response()->json($stocks);
     }
 }
