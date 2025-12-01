@@ -111,9 +111,10 @@ class StockRenderController extends Controller
 
     public function filterByMake($make)
     {
-        $stocks = Stock::whereHas('make', function ($r) use ($make) {
-            $r->where('name', $make);
-        })->paginate(6);
+        $stocks = Stock::with('make', 'bodyType', 'category', 'currency', 'country')
+            ->whereHas('make', function ($r) use ($make) {
+                $r->where('name', $make);
+            })->paginate(6);
 
         return response()->json($stocks);
     }
