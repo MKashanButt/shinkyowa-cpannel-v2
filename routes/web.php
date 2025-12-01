@@ -22,17 +22,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('authKey')
     ->prefix('/api/stock/')
+    ->controller(StockRenderController::class)
     ->group(function () {
-        Route::get('all', [StockRenderController::class, 'index']);
-        Route::get('byCategory', [StockRenderController::class, 'byCategory']);
-        Route::get('single/{id}', [StockRenderController::class, 'single']);
-        Route::get('totalStock', [StockRenderController::class, 'totalStock']);
-        Route::get('makes', [StockRenderController::class, 'makes']);
-        Route::get('makes/count', [StockRenderController::class, 'makesCount']);
-        Route::get('country/count', [StockRenderController::class, 'countryCount']);
-        Route::get('country/count', [StockRenderController::class, 'countryCount']);
-        Route::get('vehicleOfTheDay', [StockRenderController::class, 'vehicleOfTheDay']);
-        Route::get('filterOptions', [StockRenderController::class, 'filterOptions']);
+        Route::get('all',  'index');
+        Route::get('byCategory',  'byCategory');
+        Route::get('single/{id}',  'single');
+        Route::get('totalStock',  'totalStock');
+        Route::get('makes',  'makes');
+        Route::get('makes/count',  'makesCount');
+        Route::get('country/count',  'countryCount');
+        Route::get('vehicleOfTheDay',  'vehicleOfTheDay');
+        // Filteration
+        Route::get('filterOptions',  'filterOptions');
+        Route::get('filterByMake/{make}',  'filterByMake');
     });
 
 Route::middleware(['auth', 'customerRoleCheck'])->group(function () {
