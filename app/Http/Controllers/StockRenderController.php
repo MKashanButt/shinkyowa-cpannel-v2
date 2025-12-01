@@ -19,14 +19,21 @@ class StockRenderController extends Controller
 
     public function byCategory()
     {
-        $stocks = Stock::with('make', 'bodyType', 'category', 'currency', 'country')
+        $allStocks = Stock::with('make', 'bodyType', 'category', 'currency', 'country')
             ->orderBy('id', 'DESC')
-            ->limit(8)
-            ->get()
-            ->groupBy(fn($stock) => $stock->category->name ?? 'Uncategorized');
+            ->get();
 
-        return response()->json($stocks);
+        $groupedStocks = $allStocks->groupBy(function ($stock) {
+            return trim($stock->category->name ?? 'Uncategorized');
+        });
+
+        $groupedStocks = $groupedStocks->map(function ($group) {
+            return $group->take(8);
+        });
+
+        return response()->json($groupedStocks);
     }
+
 
     public function single($id)
     {
