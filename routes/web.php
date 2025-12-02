@@ -35,6 +35,7 @@ Route::middleware('authKey')
         // Filteration
         Route::get('filterOptions',  'filterOptions');
         Route::get('filterByMake/{make}',  'filterByMake');
+        Route::get('filterByType/{type}',  'filterByType');
     });
 
 Route::middleware(['auth', 'customerRoleCheck'])->group(function () {
