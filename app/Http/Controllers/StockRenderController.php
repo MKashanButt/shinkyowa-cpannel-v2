@@ -127,7 +127,7 @@ class StockRenderController extends Controller
 
     public function filterByType($type)
     {
-        $stocks = Stock::with('type', 'bodyType', 'category', 'currency', 'country')
+        $stocks = Stock::with('make', 'bodyType', 'category', 'currency', 'country')
             ->whereHas('bodyType', function ($r) use ($type) {
                 $r->where('name', $type);
             })->paginate(6);
