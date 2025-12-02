@@ -52,7 +52,7 @@ class ReservedVehicleController extends Controller
                     $q->where('agent_id', Auth::id());
                 });
             })
-            ->get(['name', 'id']);
+            ->pluck('name', 'id');
 
         return view('reserved-vehicle.create', compact('stocks', 'customerAccounts'));
     }
