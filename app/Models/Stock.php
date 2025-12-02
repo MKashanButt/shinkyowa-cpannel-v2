@@ -19,6 +19,7 @@ class Stock extends Model
         'year',
         'mileage',
         'fob',
+        'cnf',
         'currency_id',
         'doors',
         'transmission',
